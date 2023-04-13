@@ -13,11 +13,7 @@
       </a>
     </div>
     <nav class="card-nav">
-      <div class="selector">
-        <span class="selected">Dayly</span>
-        <span>Hourly</span>
-        <span>Weekly</span>
-      </div>
+      <selector />
     </nav>
     <component :is="infoDay" />
   </base-card>
@@ -50,6 +46,7 @@
   import { ref, reactive } from 'vue'
   import baseCard from '@/components/base-card'
   import CheckmarkOutline from '@/assets/icons/checkmark-outline.svg'
+  import selector from '@/components/selector'
   import infoDay from '@/components/info-day'
   import infoDaylyGraph from '@/components/info-dayly-graph'
   import infoWeek from '@/components/info-week'

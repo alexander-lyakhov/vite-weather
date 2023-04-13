@@ -3,48 +3,48 @@
     <div class="temperature">
       <div class="current">
         <div class="actual">
-          12&#8451;
+          --&#8451;
         </div>
 
         <div class="feels">
-          Feels like 12&#8451;
+          Feels like --&#8451;
         </div>
       </div>
       <div class="dayly">
         <div class="dayly-block">
           <span>Night</span>
-          <span>8 &#8451;</span>
+          <span>-- &#8451;</span>
         </div>
         <div class="dayly-block">
           <span>Morning</span>
-          <span>10 &#8451;</span>
+          <span>-- &#8451;</span>
         </div>
         <div class="dayly-block">
           <span>Day</span>
-          <span>12 &#8451;</span>
+          <span>-- &#8451;</span>
         </div>
         <div class="dayly-block">
           <span>Evening</span>
-          <span>10 &#8451;</span>
+          <span>-- &#8451;</span>
         </div>
       </div>
     </div>
     <ul class="extra-blocks">
       <li>
         <span class="key">Wind</span>
-        <span class="value">5.42 m/s</span>
+        <span class="value">-- m/s</span>
       </li>
       <li>
         <span class="key">Pressure</span>
-        <span class="value">1003 hPa</span>
+        <span class="value">-- hPa</span>
       </li>
       <li>
         <span class="key">Humidity</span>
-        <span class="value">87%</span>
+        <span class="value">--%</span>
       </li>
       <li>
         <span class="key">Visibility</span>
-        <span class="value">10.0 km</span>
+        <span class="value">-- km</span>
       </li>
     </ul>
   </div>
