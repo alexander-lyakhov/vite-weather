@@ -1,0 +1,29 @@
+
+ There are several APIs available that provide information on cities with their geographic coordinates. Here are a few
+ options:
+
+ OpenCage Geocoder API: The OpenCage Geocoder API provides forward and reverse geocoding, which means you can input a
+ location or coordinates and receive information about the nearest city. The API offers a free plan that allows up to
+ 2,500 requests per day. You can check out their documentation and sign up for an API key at
+
+ 	https://opencagedata.com/api.
+
+ GeoNames API: The GeoNames API provides a database of over 10 million geographic names, including cities, and allows
+ you to search for cities based on name, postal code, or coordinates. The API offers a free plan that allows up to
+ 30,000 requests per day. You can check out their documentation and sign up for an API key at
+
+ 	http://www.geonames.org/export/web-services.html.
+
+ Mapbox Geocoding API: The Mapbox Geocoding API provides forward and reverse geocoding for addresses and coordinates,
+ and includes information about cities. The API offers a free plan that allows up to 50,000 geocodes per month. You can
+ check out their documentation and sign up for an API key at
+
+ 	https://docs.mapbox.com/api/search/geocoding/.
+
+ Here Geocoding & Search API: The Here Geocoding & Search API provides forward and reverse geocoding for addresses and
+ coordinates, and includes information about cities. The API offers a free plan that allows up to 250,000 transactions
+ per month. You can check out their documentation and sign up for an API key at
+
+ 	https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-geocode-brief.html.
+
+ These APIs should help you get started with retrieving city information with geo location.

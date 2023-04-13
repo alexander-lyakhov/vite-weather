@@ -1,0 +1,30 @@
+﻿remove
+	"type": "module"
+
+from package.js
+
+
+Setup VITE project
+--------------------------
+https://vitejs.dev/guide/
+--------------------------
+
+- Install the project with
+
+	npm create vite@latest (*)
+
+  or
+
+	yarn create vite
+  
+  or
+
+	yarn create vite my-vue-app --template vue
+
+- Insatll SCSS
+
+	npm add -D sass
+
+- Install Vuex if needed
+	
+	npm install vuex@next --save
