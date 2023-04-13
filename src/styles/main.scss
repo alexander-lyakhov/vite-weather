@@ -46,7 +46,8 @@ a {
 }
 
 #app {
-  max-width: $page-width;
+  max-width: $max-page-width;
+  min-width: $min-page-width;
   margin: auto;
   position: relative;
 }
