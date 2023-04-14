@@ -1,35 +1,27 @@
 ﻿<template>
   <div class="container">
     <ul class="days">
-      <li>
-        <span class="date">Fri Apr 14 2023</span>
-        <span class="value">16 / 6 &#8451;</span>
-      </li>
-      <li>
-        <span class="date">Fri Apr 14 2023</span>
-        <span class="value">16 / 6 &#8451;</span>
-      </li>
-      <li>
-        <span class="date">Fri Apr 14 2023</span>
-        <span class="value">16 / 6 &#8451;</span>
-      </li>
-      <li>
-        <span class="date">Fri Apr 14 2023</span>
-        <span class="value">16 / 6 &#8451;</span>
-      </li>
-      <li>
-        <span class="date">Fri Apr 14 2023</span>
-        <span class="value">16 / 6 &#8451;</span>
+      <li v-for="(item, index) in days" :key="index">
+        <span class="date">{{ getDateByOffset(index) }}</span>
+        <span class="value">{{ item.temp.max}} / {{ item.temp.min }} &#8451;</span>
       </li>
     </ul>
   </div>
 </template>
 
 <script setup>
-  import { ref, reactive } from 'vue'
+  import { ref, computed } from 'vue'
+  import { useStore } from 'vuex'
 
-  const props = defineProps({
-  })
+  const store = useStore()
+
+  const data = computed(() => store.getters.getByCity('Dnipro'))
+  const days = computed(() => data.value.daily.slice(0, 5))
+
+  function getDateByOffset(offset) {
+    const date = new Date()
+    return new Date(date.setDate(date.getDate() + offset)).toDateString()
+  }
 </script>
 
 <style lang="scss" scoped>
