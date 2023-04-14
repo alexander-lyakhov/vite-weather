@@ -2,11 +2,11 @@
   <div class="card">
     <slot>
       <div class="card-header">
-        <span class="title">Dnipro, UA</span>
-        <a
-          href="#" @click="toggleFavorites"
+        <span class="title">{{ data.name }}, {{ data.country }}</span>
+        <a href="#"
           class="btn btn-icon"
-          :class="{'has-accent': isInFavorites}"
+          :class="classObj"
+          @click="toggleFavorites"
         >
           <IconFavs />
         </a>
@@ -48,6 +48,7 @@
 
 <script setup>
   import { ref, computed } from 'vue'
+  import { useStore } from 'vuex'
   import IconFavs from '@/assets/icons/star.svg'
   import IconReload from '@/assets/icons/reload.svg'
   import IconDelete from '@/assets/icons/delete.svg'
@@ -57,27 +58,29 @@
   import infoWeek from '@/components/info-week'
   import { cardTabs } from '@/config/index.js'
 
-  const props = defineProps({
-  })
-
   const components = {
     infoDay,
     infoDaylyGraph,
     infoWeek
   }
 
+  const store = useStore()
+
   const isInFavorites = ref(false)
   const selectedTab = ref(cardTabs[0])
-  
+
+  const data = computed(() =>
+    store.getters.getByCity('Dnipro')
+  )
+
+  const classObj = computed(() => ({
+    'has-accent': isInFavorites.value
+  }))
+
   const selectedTabView = computed(() => 
     components[selectedTab.value.value]
   )
   
-  const classes = computed(() => ({
-    'has-accent': isInFavorites.value
-  }))
-
-
   function toggleFavorites() {
     isInFavorites.value = !isInFavorites.value
   }

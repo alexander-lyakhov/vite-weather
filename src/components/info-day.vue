@@ -3,7 +3,7 @@
     <div class="temperature">
       <div class="current">
         <div class="actual">
-          --&#8451;
+          {{ temperature }} &#8451;
         </div>
 
         <div class="feels">
@@ -32,29 +32,39 @@
     <ul class="extra-blocks">
       <li>
         <span class="key">Wind</span>
-        <span class="value">-- m/s</span>
+        <span class="value">{{ wind }} m/s</span>
       </li>
       <li>
         <span class="key">Pressure</span>
-        <span class="value">-- hPa</span>
+        <span class="value">{{ pressure }} hPa</span>
       </li>
       <li>
         <span class="key">Humidity</span>
-        <span class="value">--%</span>
+        <span class="value">{{ humidity }}%</span>
       </li>
       <li>
         <span class="key">Visibility</span>
-        <span class="value">-- km</span>
+        <span class="value">{{ visibility }} km</span>
       </li>
     </ul>
   </div>
 </template>
 
 <script setup>
-  import { ref, reactive } from 'vue'
+  import { ref, computed } from 'vue'
+  import { useStore } from 'vuex'
 
-  const props = defineProps({
-  })
+  const store = useStore()
+
+  const data = computed(() =>
+    store.getters.getByCity('Dnipro')
+  )
+
+  const temperature = computed(() => Math.round(data.value.current.temp) || '--')
+  const wind = computed(() => Math.round(data.value.current.temp) || '--')
+  const pressure = computed(() => Math.round(data.value.current.pressure) || '--')
+  const humidity = computed(() => Math.round(data.value.current.humidity) || '--')
+  const visibility = computed(() => Math.round(data.value.current.visibility) / 1000 || '--')
 </script>
 
 <style lang="scss" scoped>

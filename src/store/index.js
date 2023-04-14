@@ -7,10 +7,13 @@ export default createStore({
   strict: true,
 
   state: () => ({
-    cities: [{name: 'Dnipro', country: 'UA', ...data}]
+    cards: [{name: 'Dnipro', country: 'UA', ...data}]
   }),
 
   getters: {
+    getByCity(state) {
+      return (name) => state.cards.find(el => el.name === name)
+    }
   },
 
   mutations: {
