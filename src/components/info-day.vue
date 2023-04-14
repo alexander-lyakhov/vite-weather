@@ -7,25 +7,25 @@
         </div>
 
         <div class="feels">
-          Feels like --&#8451;
+          Feels like {{ feelsLike }} &#8451;
         </div>
       </div>
       <div class="dayly">
         <div class="dayly-block">
           <span>Night</span>
-          <span>-- &#8451;</span>
+          <span>{{ t_night }} &#8451;</span>
         </div>
         <div class="dayly-block">
           <span>Morning</span>
-          <span>-- &#8451;</span>
+          <span>{{ t_morning }} &#8451;</span>
         </div>
         <div class="dayly-block">
           <span>Day</span>
-          <span>-- &#8451;</span>
+          <span>{{ t_day }} &#8451;</span>
         </div>
         <div class="dayly-block">
           <span>Evening</span>
-          <span>-- &#8451;</span>
+          <span>{{ t_evening }} &#8451;</span>
         </div>
       </div>
     </div>
@@ -60,11 +60,16 @@
     store.getters.getByCity('Dnipro')
   )
 
-  const temperature = computed(() => Math.round(data.value.current.temp) || '--')
-  const wind = computed(() => Math.round(data.value.current.temp) || '--')
-  const pressure = computed(() => Math.round(data.value.current.pressure) || '--')
-  const humidity = computed(() => Math.round(data.value.current.humidity) || '--')
-  const visibility = computed(() => Math.round(data.value.current.visibility) / 1000 || '--')
+  const temperature = computed(() => Math.round(data.value.current?.temp) || '--')
+  const feelsLike   = computed(() => Math.round(data.value.current?.feels_like) || '--')
+  const t_night     = computed(() => Math.round(data.value.daily[0]?.temp?.night) || '--')
+  const t_morning   = computed(() => Math.round(data.value.daily[0]?.temp?.morn) || '--')
+  const t_day       = computed(() => Math.round(data.value.daily[0]?.temp?.day) || '--')
+  const t_evening   = computed(() => Math.round(data.value.daily[0]?.temp?.eve) || '--')
+  const wind        = computed(() => Math.round(data.value.current?.wind_speed) || '--')
+  const pressure    = computed(() => Math.round(data.value.current?.pressure) || '--')
+  const humidity    = computed(() => Math.round(data.value.current?.humidity) || '--')
+  const visibility  = computed(() => Math.round(data.value.current?.visibility) / 1000 || '--')
 </script>
 
 <style lang="scss" scoped>
