@@ -13,9 +13,9 @@
       </a>
     </div>
     <nav class="card-nav">
-      <selector />
+      <selector :options="cardTabs" v-model="selectedTab" />
     </nav>
-    <component :is="infoDay" />
+    <component :is="selectedTabView" />
   </base-card>
 
   <base-card>
@@ -32,27 +32,33 @@
       </a>
     </div>
     <nav class="card-nav">
-      <div class="selector">
-        <span class="selected">Dayly</span>
-        <span>Hourly</span>
-        <span>Weekly</span>
-      </div>
+      <selector :options="cardTabs" v-model="selectedTab" />
     </nav>
     <component :is="infoWeek" />
   </base-card>
 </template>
 
 <script setup>
-  import { ref, reactive } from 'vue'
+  import { ref, computed, resolveComponent } from 'vue'
   import baseCard from '@/components/base-card'
   import CheckmarkOutline from '@/assets/icons/checkmark-outline.svg'
   import selector from '@/components/selector'
   import infoDay from '@/components/info-day'
   import infoDaylyGraph from '@/components/info-dayly-graph'
   import infoWeek from '@/components/info-week'
+  import { cardTabs } from '@/config/index.js'
 
   const props = defineProps({
   })
+
+  const components = {
+    infoDay,
+    infoDaylyGraph,
+    infoWeek
+  }
+
+  const selectedTab = ref(cardTabs[0])
+  const selectedTabView = computed(() => components[selectedTab.value.value])
 </script>
 
 <style lang="scss" scoped>
@@ -74,23 +80,6 @@
 
   &-nav {
     margin-top: .25rem;
-    .selector {
-      font-size: .75rem;
-      border-bottom: 2px solid $bg-500;
-      display: flex;
-      gap: .5rem;
-
-      span {
-        margin-bottom: -2px;
-        padding: .5rem 0;
-        cursor: pointer;
-
-        &.selected {
-          // background: $bg-600;
-          border-bottom: 2px solid $bg-300;
-        }
-      }
-    }
   }
 }
 </style>

@@ -1,16 +1,32 @@
 ﻿<template>
-  <div class="selector">
-    <span class="selected">Dayly</span>
-    <span>Hourly</span>
-    <span>Weekly</span>
+  <div class="selector noselect">
+    <span
+      v-for="(item, index) in options"
+      :key="index"
+      :class="{'selected': isSelected(item.value)}"
+      @click="$emit('update:modelValue', item)"
+    >{{ item.text }}</span>
   </div>
 </template>
 
 <script setup>
-  import { ref, reactive } from 'vue'
+  import { ref } from 'vue'
 
   const props = defineProps({
+    options: {
+      type: Array,
+      default: () => ([]),
+      requited: true
+    },
+    modelValue: {
+      type: Object,
+      requited: true
+    }
   })
+
+  function isSelected(value) {
+    return props.modelValue.value === value
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -18,16 +34,19 @@
   font-size: .75rem;
   border-bottom: 2px solid $bg-500;
   display: flex;
-  gap: .5rem;
+  gap: .75rem;
+  height: 2rem;
 
   span {
-    margin-bottom: -2px;
-    padding: .5rem 0;
+    height: calc(100% + 2px);
+    display: flex;
+    align-items: center;
+    position: relative;
     cursor: pointer;
 
     &.selected {
-      // background: $bg-600;
-      border-bottom: 2px solid $bg-300;
+      // border-bottom: 2px solid $bg-300;
+      border-bottom: 2px solid $accent-green;
     }
   }
 }
