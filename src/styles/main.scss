@@ -18,27 +18,32 @@ a {
 }
 
 .btn {
-  transition: background .1s;
   cursor: pointer;
-
-  &:hover {
-    background: $bg-600;
-  }
 }
 
 .btn-icon {
-  border-radius: 50%;
+  background: $bg-600;
+  // border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 2rem;
   height: 2rem;
   padding: .125rem;
 
   svg {
-    color: $text-100;
+    color: $text-200;
+  }
+
+  &.has-accent {
+    background: $accent-green;
+    svg {
+      color: #000;
+    }
   }
 
   &.is-disabled {
     pointer-events: none;
-
     svg {
       color: $text-400;
     }
