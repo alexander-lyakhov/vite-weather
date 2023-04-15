@@ -2,18 +2,30 @@
   <div class="card">
     <slot>
       <div class="card-header">
-        <span class="title">{{ data.name }}, {{ data.country }}</span>
+        <span class="title">
+          <template v-if="data?.name">
+            {{ data?.name }}, {{ data?.country }}
+          </template>
+        </span>
         <a href="#"
           class="btn btn-icon"
           :class="classObj"
-          @click="toggleFavorites"
+          @click.prevent="toggleFavorites"
         >
           <IconFavs />
         </a>
-        <a class="btn btn-icon" href="#">
+        <a
+          class="btn btn-icon"
+          href="#"
+          @click.prevent
+        >
           <IconReload />
         </a>
-        <a class="btn btn-icon" href="#">
+        <a
+          class="btn btn-icon"
+          href="#"
+          @click.prevent="$emit('delete', uid)"
+        >
           <IconDelete />
         </a>
       </div>
@@ -26,7 +38,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed, provide } from 'vue'
   import { useStore } from 'vuex'
   import IconFavs from '@/assets/icons/star.svg'
   import IconReload from '@/assets/icons/reload.svg'
@@ -36,6 +48,15 @@
   import infoDaylyGraph from '@/components/info-dayly-graph'
   import infoWeek from '@/components/info-week'
   import { cardTabs } from '@/config/index.js'
+
+  const props = defineProps({
+    uid: {
+      type: String,
+      required: true
+    }
+  })
+
+  provide('uid', props.uid)
 
   const components = {
     infoDay,
@@ -49,7 +70,7 @@
   const selectedTab = ref(cardTabs[0])
 
   const data = computed(() =>
-    store.getters.getByCity('Dnipro')
+    store.getters.getByUID(props.uid)
   )
 
   const classObj = computed(() => ({
@@ -71,6 +92,7 @@
   color: $text-100;
   background: $bg-700;
   display: grid;
+  grid-auto-rows: min-content;
   padding: .5rem;
   cursor: default;
 

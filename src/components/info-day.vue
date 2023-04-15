@@ -51,25 +51,30 @@
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed, inject } from 'vue'
   import { useStore } from 'vuex'
 
+  const uid = inject('uid')
   const store = useStore()
 
   const data = computed(() =>
-    store.getters.getByCity('Dnipro')
+    store.getters.getByUID(uid)
   )
 
-  const temperature = computed(() => Math.round(data.value.current?.temp) || '--')
-  const feelsLike   = computed(() => Math.round(data.value.current?.feels_like) || '--')
-  const t_night     = computed(() => Math.round(data.value.daily[0]?.temp?.night) || '--')
-  const t_morning   = computed(() => Math.round(data.value.daily[0]?.temp?.morn) || '--')
-  const t_day       = computed(() => Math.round(data.value.daily[0]?.temp?.day) || '--')
-  const t_evening   = computed(() => Math.round(data.value.daily[0]?.temp?.eve) || '--')
-  const wind        = computed(() => Math.round(data.value.current?.wind_speed) || '--')
-  const pressure    = computed(() => Math.round(data.value.current?.pressure) || '--')
-  const humidity    = computed(() => Math.round(data.value.current?.humidity) || '--')
-  const visibility  = computed(() => Math.round(data.value.current?.visibility) / 1000 || '--')
+  const daily = computed(() =>
+  	data.value.daily ? data.value?.daily[0] : {}
+  )
+
+  const temperature = computed(() => Math.round(data.value?.current?.temp) || '--')
+  const feelsLike   = computed(() => Math.round(data.value?.current?.feels_like) || '--')
+  const t_night     = computed(() => Math.round(daily.value?.temp?.night) || '--')
+  const t_morning   = computed(() => Math.round(daily.value?.temp?.morn) || '--')
+  const t_day       = computed(() => Math.round(daily.value?.temp?.day) || '--')
+  const t_evening   = computed(() => Math.round(daily.value?.temp?.eve) || '--')
+  const wind        = computed(() => Math.round(data.value?.current?.wind_speed) || '--')
+  const pressure    = computed(() => Math.round(data.value?.current?.pressure) || '--')
+  const humidity    = computed(() => Math.round(data.value?.current?.humidity) || '--')
+  const visibility  = computed(() => Math.round(data.value?.current?.visibility) / 1000 || '--')
 </script>
 
 <style lang="scss" scoped>

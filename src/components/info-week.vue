@@ -10,13 +10,14 @@
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed, inject } from 'vue'
   import { useStore } from 'vuex'
 
+  const uid = inject('uid')
   const store = useStore()
 
-  const data = computed(() => store.getters.getByCity('Dnipro'))
-  const days = computed(() => data.value.daily.slice(0, 5))
+  const data = computed(() => store.getters.getByUID(uid))
+  const days = computed(() => data.value?.daily?.slice(0, 5))
 
   function getDateByOffset(offset) {
     const date = new Date()

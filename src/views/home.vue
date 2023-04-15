@@ -1,18 +1,39 @@
 ﻿<template>
   <main>
-    <card />
-    <card class="card-add">
-      <div class="btn btn-add">+</div>
+    <card
+      v-for="card in cards"
+      :key="card.uid"
+      :uid="card.uid"
+      @delete="deleteCard"
+    />
+    <card
+      class="card-add noselect"
+      :uid="'empty'"
+      v-if="isVisible"
+    >
+      <div class="btn btn-add" @click="addCard">+</div>
     </card>
   </main>
 </template>
 
 <script setup>
-  import { ref, reactive } from 'vue'
+  import { ref, computed } from 'vue'
+  import { useStore } from 'vuex'
   import card from '@/components/card'
 
-  const props = defineProps({
-  })
+  const store = useStore()
+  const cards = computed(() => store.state.cards)
+
+  const isVisible = computed(() => cards.value.length < 5)
+
+  function addCard() {
+    store.dispatch('addCard')
+  }
+
+  function deleteCard(uid) {
+    console.log('deleteCard', uid)
+    store.dispatch('deleteCard', uid)
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -20,7 +41,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: auto;
-  grid-gap: .5rem;
+  grid-gap: 1.5rem .75rem;
   padding: .5rem;
 
   .card-add {
