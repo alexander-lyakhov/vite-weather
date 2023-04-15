@@ -1,6 +1,7 @@
 ﻿<template>
   <div class="card">
     <slot>
+      <combobox />
       <div class="card-header">
         <span class="title">
           <template v-if="data?.name">
@@ -43,6 +44,7 @@
   import IconFavs from '@/assets/icons/star.svg'
   import IconReload from '@/assets/icons/reload.svg'
   import IconDelete from '@/assets/icons/delete.svg'
+  import combobox from '@/components/combobox'
   import selector from '@/components/selector'
   import infoDay from '@/components/info-day'
   import infoDaylyGraph from '@/components/info-dayly-graph'
@@ -103,6 +105,7 @@
     display: grid;
     grid-template-columns: 1fr repeat(3, 32px);
     grid-gap: .25rem;
+    margin-top: .5rem;
   }
 
   &-nav {
