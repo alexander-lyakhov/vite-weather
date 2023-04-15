@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="card">
     <slot>
-      <combobox />
+      <combobox placeholder="Search City" />
       <div class="card-header">
         <span class="title">
           <template v-if="data?.name">

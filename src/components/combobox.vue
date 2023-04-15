@@ -1,21 +1,31 @@
 ﻿<template>
-  <div class="combobox">
-    <div class="combobox-container">
-      <textfield />
-      <ul class="list">
-        <li>Dnepr</li>
-        <li>Moskow</li>
-        <li>Leningrad</li>
-        <li>Odessa</li>
-        <li>Voronezh</li>
-      </ul>
+  <overlay :is-visible="isOverlayVisible" />
+  <div class="combobox noselect">
+    <div class="combobox-header">
+      <textfield v-bind="$attrs" @focus="onFocus" />
     </div>
+    <ul class="list" v-show="isListVisible">
+      <li>Dnepr</li>
+      <li>Moskow</li>
+      <li>Leningrad</li>
+      <li>Odessa</li>
+      <li>Voronezh</li>
+    </ul>
   </div>
 </template>
 
 <script setup>
   import { ref } from 'vue'
+  import overlay from '@/components/modal/overlay'
   import textfield from '@/components/textfield'
+
+  const isOverlayVisible = ref(false)
+  const isListVisible = ref(false)
+
+  function onFocus() {
+    isOverlayVisible.value = true
+    isListVisible.value = true
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -26,32 +36,27 @@
   padding: .5rem;
   z-index: 1;
 
-  &-container {
-    position: relative;
-    
-    .list {
-      background: $bg-700;
-      border: 1px solid $bg-400;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      top: 100%;
+  .list {
+    background: $bg-700;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    padding: .5rem;
 
-      li {
-        background: $bg-700;
-        padding: .75rem .5rem;
-        cursor: pointer;
-        
-        &:not(:last-child) {
-          border-bottom: 1px solid $bg-500;
-        }
+    li {
+      background: $bg-800;
+      padding: .75rem .5rem;
+      cursor: pointer;
+      
+      &:not(:last-child) {
+        margin-bottom: .25rem;
+      }
 
-        &:hover {
-          background: $bg-600;
-        }			
+      &:hover {
+        background: $bg-600;
       }
     }
   }
 }
 </style>
-  

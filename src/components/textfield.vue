@@ -6,6 +6,7 @@
       :value="modelValue" 
       @input="onInput"
       @keypress="onKeypress"
+      @focus="$emit('focus')"
     />
   </div>
 </template>
@@ -26,7 +27,7 @@
 
   const emit = defineEmits([
     'update:modelValue',
-    'change'
+    'change',
   ])
 
   const classObject = computed(() => ({
