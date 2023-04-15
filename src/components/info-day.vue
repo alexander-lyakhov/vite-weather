@@ -137,9 +137,9 @@
         font-size: .875rem;
         color: $text-200;
         position: absolute;
-        left: 0;
-        top: 0;
-        padding: .25rem;
+        left: 0.25rem;
+        top: 2px;
+        padding: 2px;
       }
       
       .value {
