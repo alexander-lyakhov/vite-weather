@@ -2,7 +2,7 @@
   <overlay :is-visible="isOverlayVisible" />
   <div class="combobox noselect">
     <div class="combobox-header">
-      <textfield v-bind="$attrs" @focus="onFocus" />
+      <textfield v-bind="$attrs" @focus="open" @click.stop />
     </div>
     <ul class="list" v-show="isListVisible">
       <li>Dnepr</li>
@@ -22,9 +22,18 @@
   const isOverlayVisible = ref(false)
   const isListVisible = ref(false)
 
-  function onFocus() {
+  function open() {
+    document.body.addEventListener('click', close)
+
     isOverlayVisible.value = true
     isListVisible.value = true
+  }
+
+  function close() {
+    document.body.removeEventListener('click', close)
+
+    isOverlayVisible.value = false
+    isListVisible.value = false
   }
 </script>
 

@@ -3,16 +3,25 @@
     <input
       type="text"
       :placeholder="placeholder"
-      :value="modelValue" 
+      v-model.trim="text"
       @input="onInput"
       @keypress="onKeypress"
       @focus="$emit('focus')"
     />
+    <a
+      href="#"
+      class="btn btn-icon"
+      :class="{'is-disabled': isClearBtnDisabled}"
+      @click.stop="clear"
+    >
+      <IconDelete />
+    </a>
   </div>
 </template>
 
 <script setup>
-  import { computed } from 'vue'
+  import { ref, computed } from 'vue'
+  import IconDelete from '@/assets/icons/x.svg'
 
   const props = defineProps({
     placeholder: {
@@ -30,9 +39,13 @@
     'change',
   ])
 
-  const classObject = computed(() => ({
-    'not-empty': !!props.modelValue
-  }))
+  const text = ref('')
+
+  const isClearBtnDisabled = computed(() => text.value === '')
+
+  function clear() {
+    text.value = ''
+  }
 
   function onInput(e) {
     emit('update:modelValue', e.target.value)
@@ -51,8 +64,9 @@
   background: $bg-800;
   border: 1px solid $bg-400;
   display: flex;
+  align-items: center;
   height: 2.5rem;
-  padding: 0 .5rem;
+  padding: 0 0.25rem 0 .5rem;
   z-index: 1;
 
   &.not-empty {
@@ -67,6 +81,14 @@
     outline: 0;
     width: 100%;
     height: 100%;
+  }
+
+  .btn {
+    background: transparent;
+
+    &.is-disabled svg {
+      color: $text-400;
+    }
   }
 }
 </style>
