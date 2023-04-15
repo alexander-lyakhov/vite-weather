@@ -3,7 +3,7 @@
     <ul class="days">
       <li v-for="(item, index) in days" :key="index">
         <span class="date">{{ getDateByOffset(index) }}</span>
-        <span class="value">{{ item.temp.max}} / {{ item.temp.min }} &#8451;</span>
+        <span class="value">{{ getMaxTemp(item) }} / {{ getMinTemp(item) }} &#8451;</span>
       </li>
     </ul>
   </div>
@@ -22,19 +22,24 @@
     const date = new Date()
     return new Date(date.setDate(date.getDate() + offset)).toDateString()
   }
+
+  function getMaxTemp(item) {
+    return Math.round(item?.temp?.max)
+  }
+
+  function getMinTemp(item) {
+    return Math.round(item?.temp?.min)
+  }
 </script>
 
 <style lang="scss" scoped>
 .container {
-  // background: $bg-600;
   height: 284px;
   margin-top: .25rem;
 
   ul.days {
-    // background: $bg-600;
     display: grid;
     grid-template-columns: 1fr;
-    // grid-template-rows: repeat(5, 20%);
     grid-gap: .25rem;
     height: 100%;
 
@@ -44,10 +49,6 @@
       justify-content: space-between;
       align-items: center;
       padding: .5rem;
-
-      &:not(:last-child) {
-        // border-bottom: 1px solid $bg-500;
-      }
     }
   }
 }

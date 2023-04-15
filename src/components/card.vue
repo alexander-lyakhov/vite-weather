@@ -23,27 +23,6 @@
       <component :is="selectedTabView" />
     </slot>
   </div>
-
-  <div class="card">
-    <slot>
-      <div class="card-header">
-        <span class="title">Dnipro, UA</span>
-        <a class="btn btn-icon" href="#">
-          <IconFavs />
-        </a>
-        <a class="btn btn-icon" href="#">
-          <IconReload />
-        </a>
-        <a class="btn btn-icon" href="#">
-          <IconDelete />
-        </a>
-      </div>
-      <nav class="card-nav">
-        <selector :options="cardTabs" v-model="selectedTab" />
-      </nav>
-      <component :is="infoWeek" />
-    </slot>
-  </div>
 </template>
 
 <script setup>
@@ -91,6 +70,7 @@
   font-size: 1rem;
   color: $text-100;
   background: $bg-700;
+  display: grid;
   padding: .5rem;
   cursor: default;
 

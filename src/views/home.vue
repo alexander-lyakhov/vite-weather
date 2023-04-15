@@ -1,7 +1,9 @@
 ﻿<template>
   <main>
     <card />
-    <!--<card />-->
+    <card class="card-add">
+      <div class="btn btn-add">+</div>
+    </card>
   </main>
 </template>
 
@@ -20,6 +22,21 @@ main {
   grid-auto-rows: auto;
   grid-gap: .5rem;
   padding: .5rem;
+
+  .card-add {
+    .btn-add {
+      font-size: 8rem;
+      color: $text-400;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 356px;
+
+      &:hover {
+        color: $text-300;
+      }
+    }
+  }
 }
 @media (max-width: 720px) {
   main {
