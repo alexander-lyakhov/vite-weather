@@ -1,7 +1,7 @@
 ﻿import axios from 'axios';
 import { flags } from '@/utils'
 
-axios.defaults.baseURL = 'https://cinema-api-test.y-media.io/v1';
+// axios.defaults.baseURL = 'https://cinema-api-test.y-media.io/v1';
 
 axios.interceptors.request.use(
   (config) => {

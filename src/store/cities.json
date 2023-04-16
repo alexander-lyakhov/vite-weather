@@ -1,135 +1,59 @@
 ﻿{
   "type": "FeatureCollection",
-  "query": [
-    "moscow"
-  ],
+  "query": ["paris"],
   "features": [
     {
-      "id": "place.558274",
+      "id": "place.894029",
       "type": "Feature",
-      "place_type": [
-        "region",
-        "place"
-      ],
+      "place_type": ["region", "place"],
       "relevance": 1,
       "properties": {
-        "short_code": "RU-MOW",
-        "wikidata": "Q649",
-        "mapbox_id": "dXJuOm1ieHBsYzpDSVRD"
+        "short_code": "FR-75",
+        "wikidata": "Q90",
+        "mapbox_id": "dXJuOm1ieHBsYzpEYVJO"
       },
-      "text": "Moscow",
-      "place_name": "Moscow, Russia",
-      "bbox": [
-        36.80317,
-        55.142126,
-        37.967345,
-        56.021479
-      ],
-      "center": [
-        37.6174943,
-        55.7504461
-      ],
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          37.6174943,
-          55.7504461
-        ]
-      },
+      "text": "Paris",
+      "place_name": "Paris, France",
+      "bbox": [2.224225, 48.815607, 2.469709, 48.902012],
+      "center": [2.3483915, 48.8534951],
+      "geometry": {"type": "Point", "coordinates": [2.3483915, 48.8534951]},
       "context": [
         {
-          "id": "country.8898",
-          "short_code": "ru",
-          "wikidata": "Q159",
-          "mapbox_id": "dXJuOm1ieHBsYzpJc0k",
-          "text": "Russia"
+          "id": "country.8781",
+          "short_code": "fr",
+          "wikidata": "Q142",
+          "mapbox_id": "dXJuOm1ieHBsYzpJazA",
+          "text": "France"
         }
       ]
     },
     {
-      "id": "region.9410",
+      "id": "place.251447532",
       "type": "Feature",
-      "place_type": [
-        "region"
-      ],
+      "place_type": ["place"],
       "relevance": 1,
       "properties": {
-        "short_code": "RU-MOS",
-        "wikidata": "Q1697",
-        "mapbox_id": "dXJuOm1ieHBsYzpKTUk"
+        "wikidata": "Q830149",
+        "mapbox_id": "dXJuOm1ieHBsYzpEdnpJN0E"
       },
-      "text": "Moscow Oblast",
-      "place_name": "Moscow Oblast, Russia",
-      "bbox": [
-        35.147965,
-        54.255746,
-        40.20557,
-        56.959059
-      ],
-      "center": [
-        38.0353929,
-        55.5043158
-      ],
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          38.0353929,
-          55.5043158
-        ]
-      },
+      "text": "Paris",
+      "place_name": "Paris, Texas, United States",
+      "bbox": [-95.682164, 33.435536, -95.310437, 33.886334],
+      "center": [-95.555513, 33.661796],
+      "geometry": {"type": "Point", "coordinates": [-95.555513, 33.661796]},
       "context": [
         {
-          "id": "country.8898",
-          "short_code": "ru",
-          "wikidata": "Q159",
-          "mapbox_id": "dXJuOm1ieHBsYzpJc0k",
-          "text": "Russia"
-        }
-      ]
-    },
-    {
-      "id": "place.221341932",
-      "type": "Feature",
-      "place_type": [
-        "place"
-      ],
-      "relevance": 1,
-      "properties": {
-        "wikidata": "Q499927",
-        "mapbox_id": "dXJuOm1ieHBsYzpEVEZvN0E"
-      },
-      "text": "Moscow",
-      "place_name": "Moscow, Idaho, United States",
-      "bbox": [
-        -117.03995,
-        46.58883,
-        -116.789658,
-        46.833004
-      ],
-      "center": [
-        -117.000165,
-        46.732388
-      ],
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -117.000165,
-          46.732388
-        ]
-      },
-      "context": [
-        {
-          "id": "district.13076204",
-          "wikidata": "Q284840",
-          "mapbox_id": "dXJuOm1ieHBsYzp4NGJz",
-          "text": "Latah County"
+          "id": "district.12846828",
+          "wikidata": "Q113313",
+          "mapbox_id": "dXJuOm1ieHBsYzp4QWJz",
+          "text": "Lamar County"
         },
         {
-          "id": "region.58604",
-          "short_code": "US-ID",
-          "wikidata": "Q1221",
-          "mapbox_id": "dXJuOm1ieHBsYzo1T3c",
-          "text": "Idaho"
+          "id": "region.181484",
+          "short_code": "US-TX",
+          "wikidata": "Q1439",
+          "mapbox_id": "dXJuOm1ieHBsYzpBc1Rz",
+          "text": "Texas"
         },
         {
           "id": "country.8940",
@@ -141,108 +65,119 @@
       ]
     },
     {
-      "id": "poi.944892855868",
+      "id": "place.251472108",
       "type": "Feature",
-      "place_type": [
-        "poi"
-      ],
+      "place_type": ["place"],
       "relevance": 1,
       "properties": {
-        "foursquare": "4f3f7419e4b0808981c37baa",
+        "wikidata": "Q1018504",
+        "mapbox_id": "dXJuOm1ieHBsYzpEdjBvN0E"
+      },
+      "text": "Paris",
+      "place_name": "Paris, Tennessee, United States",
+      "bbox": [-88.583614, 36.196042, -88.15962, 36.416139],
+      "center": [-88.325858, 36.301946],
+      "geometry": {"type": "Point", "coordinates": [-88.325858, 36.301946]},
+      "context": [
+        {
+          "id": "district.10233580",
+          "wikidata": "Q489007",
+          "mapbox_id": "dXJuOm1ieHBsYzpuQ2Jz",
+          "text": "Henry County"
+        },
+        {
+          "id": "region.214252",
+          "short_code": "US-TN",
+          "wikidata": "Q1509",
+          "mapbox_id": "dXJuOm1ieHBsYzpBMFRz",
+          "text": "Tennessee"
+        },
+        {
+          "id": "country.8940",
+          "short_code": "us",
+          "wikidata": "Q30",
+          "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+          "text": "United States"
+        }
+      ]
+    },
+    {
+      "id": "place.251504876",
+      "type": "Feature",
+      "place_type": ["place"],
+      "relevance": 1,
+      "properties": {
+        "wikidata": "Q3181341",
+        "mapbox_id": "dXJuOm1ieHBsYzpEdjJvN0E"
+      },
+      "text": "Paris",
+      "place_name": "Paris, Kentucky, United States",
+      "bbox": [-84.423632, 38.067028, -84.014159, 38.37175],
+      "center": [-84.252987, 38.209799],
+      "geometry": {"type": "Point", "coordinates": [-84.252987, 38.209799]},
+      "context": [
+        {
+          "id": "district.2033388",
+          "wikidata": "Q486105",
+          "mapbox_id": "dXJuOm1ieHBsYzpId2Jz",
+          "text": "Bourbon County"
+        },
+        {
+          "id": "region.287980",
+          "short_code": "US-KY",
+          "wikidata": "Q1603",
+          "mapbox_id": "dXJuOm1ieHBsYzpCR1Rz",
+          "text": "Kentucky"
+        },
+        {
+          "id": "country.8940",
+          "short_code": "us",
+          "wikidata": "Q30",
+          "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+          "text": "United States"
+        }
+      ]
+    },
+    {
+      "id": "poi.1116691549045",
+      "type": "Feature",
+      "place_type": ["poi"],
+      "relevance": 1,
+      "properties": {
+        "foursquare": "542e6997498e7edd4dc4e450",
         "landmark": true,
-        "address": "Складочная ул., 3, стр. 1",
-        "category": "history museum, history, historical, museum, tourism"
+        "category": "airport",
+        "maki": "airport"
       },
-      "text": "Moscow Apple Museum",
-      "place_name": "Moscow Apple Museum, Складочная ул., 3, стр. 1, Moscow, 127015, Russia",
-      "center": [
-        37.589963,
-        55.80606
-      ],
-      "geometry": {
-        "coordinates": [
-          37.589963,
-          55.80606
-        ],
-        "type": "Point"
-      },
+      "text": "Paris",
+      "place_name": "Paris, Manisa, Manisa 45300, Türkiye",
+      "center": [28.153319, 38.487281],
+      "geometry": {"coordinates": [28.153319, 38.487281], "type": "Point"},
       "context": [
         {
-          "id": "postcode.3468994",
-          "mapbox_id": "dXJuOm1ieHBsYzpOTzdD",
-          "text": "127015"
+          "id": "postcode.14421732",
+          "mapbox_id": "dXJuOm1ieHBsYzozQTdr",
+          "text": "45300"
         },
         {
-          "id": "locality.453314",
-          "mapbox_id": "dXJuOm1ieHBsYzpCdXJD",
-          "text": "округ Бутырский"
+          "id": "place.6654180",
+          "wikidata": "Q147089",
+          "mapbox_id": "dXJuOm1ieHBsYzpaWWpr",
+          "text": "Manisa"
         },
         {
-          "id": "place.558274",
-          "short_code": "RU-MOW",
-          "wikidata": "Q649",
-          "mapbox_id": "dXJuOm1ieHBsYzpDSVRD",
-          "text": "Moscow"
+          "id": "region.50404",
+          "short_code": "TR-45",
+          "wikidata": "Q130553",
+          "mapbox_id": "dXJuOm1ieHBsYzp4T1E",
+          "text": "Manisa"
         },
         {
-          "id": "country.8898",
-          "short_code": "ru",
-          "wikidata": "Q159",
-          "mapbox_id": "dXJuOm1ieHBsYzpJc0k",
-          "text": "Russia"
-        }
-      ]
-    },
-    {
-      "id": "place.221440236",
-      "type": "Feature",
-      "place_type": [
-        "place"
-      ],
-      "relevance": 1,
-      "properties": {
-        "wikidata": "Q964761",
-        "mapbox_id": "dXJuOm1ieHBsYzpEVExvN0E"
-      },
-      "text": "Moscow Mills",
-      "place_name": "Moscow Mills, Missouri, United States",
-      "bbox": [
-        -90.966781,
-        38.877923,
-        -90.802008,
-        38.997664
-      ],
-      "center": [
-        -90.918192,
-        38.947827
-      ],
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -90.918192,
-          38.947827
-        ]
-      },
-      "context": [
-        {
-          "id": "district.13731564",
-          "wikidata": "Q484582",
-          "mapbox_id": "dXJuOm1ieHBsYzowWWJz",
-          "text": "Lincoln County"
-        },
-        {
-          "id": "region.271596",
-          "short_code": "US-MO",
-          "wikidata": "Q1581",
-          "mapbox_id": "dXJuOm1ieHBsYzpCQ1Rz",
-          "text": "Missouri"
-        },
-        {
-          "id": "country.8940",
-          "short_code": "us",
-          "wikidata": "Q30",
-          "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
-          "text": "United States"
+          "id": "country.8932",
+          "short_code": "tr",
+          "wikidata": "Q43",
+          "mapbox_id": "dXJuOm1ieHBsYzpJdVE",
+          "text": "Türkiye"
         }
       ]
     }

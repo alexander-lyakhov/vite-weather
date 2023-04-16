@@ -2,7 +2,7 @@
   <overlay :is-visible="isOverlayVisible" />
   <div class="combobox noselect">
     <div class="combobox-header">
-      <textfield v-bind="$attrs" @focus="open" @click.stop />
+      <textfield v-bind="$attrs" @focus="open" @update:modelValue="onInput" @click.stop />
     </div>
     <ul class="list" v-show="isListVisible">
       <li class="place" v-for="item in places" :key="id">
@@ -19,12 +19,16 @@
 
 <script setup>
   import { ref, computed } from 'vue'
+  import { debounce } from 'lodash'
   import overlay from '@/components/modal/overlay'
   import textfield from '@/components/textfield'
   import cities from '@/store/cities.json'
+  import api from '@/api'
 
   const isOverlayVisible = ref(false)
   const isListVisible = ref(false)
+
+  const debouncedGetCities = debounce(getCities, 500)
 
   const places = computed(() => cities.features.filter(el => el.place_type.includes('place')))
 
@@ -40,6 +44,16 @@
 
     isOverlayVisible.value = false
     isListVisible.value = false
+  }
+
+  function onInput(e) {
+    // console.log(e)
+    debouncedGetCities(e)
+  }
+
+  async function getCities(e) {
+    const res = await api.fetchCities(e)
+    console.log(res)
   }
 </script>
 
