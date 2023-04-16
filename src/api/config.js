@@ -1,26 +1,27 @@
 ﻿import axios from 'axios';
-import { flags } from '@/utils'
+// import { flags } from '@/utils'
 
 // axios.defaults.baseURL = 'https://cinema-api-test.y-media.io/v1';
 
 axios.interceptors.request.use(
   (config) => {
-    flags.isLoading = true;
+    // flags.isLoading = true;
     return config;
   },
 
   (err) => {
-    flags.isLoading = false;
+    // flags.isLoading = false;
   },
 );
 
 axios.interceptors.response.use(
   (res) => {
-    flags.isLoading = false;
-    return res.data?.data
+    // flags.isLoading = false;
+    // return res.data?.data
+    return res.data
   },
   (err) => {
-    flags.isLoading = false;
+    // flags.isLoading = false;
     console.log('-- AXIOS --', err)
     return Promise.reject(err.response || { statusText: err.message })
   }

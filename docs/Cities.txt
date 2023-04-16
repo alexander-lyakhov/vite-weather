@@ -8,6 +8,8 @@
 
  	https://opencagedata.com/api.
 
+ 	148502faf7dc4c74a55852106c13fd15
+
  GeoNames API: The GeoNames API provides a database of over 10 million geographic names, including cities, and allows
  you to search for cities based on name, postal code, or coordinates. The API offers a free plan that allows up to
  30,000 requests per day. You can check out their documentation and sign up for an API key at
@@ -26,6 +28,10 @@
  coordinates, and includes information about cities. The API offers a free plan that allows up to 250,000 transactions
  per month. You can check out their documentation and sign up for an API key at
 
- 	https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-geocode-brief.html.
+ 	https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-geocode-brief.html
+
+ 	https://geocode.search.hereapi.com/v1/geocode?q=Dnipro&limit=10&apiKey=
+ 	https://autocomplete.search.hereapi.com/v1/autocomplete?q=Pariser+2+Frank&apiKey=
+ 	https://geocode.search.hereapi.com/v1/lookup?id=here:cm:namedplace:21017178&limit=10&apiKey=
 
  These APIs should help you get started with retrieving city information with geo location.

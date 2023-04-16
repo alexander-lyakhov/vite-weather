@@ -1,12 +1,11 @@
 ﻿<template>
-  <div class="text-field" :class="classObject">
+  <div class="text-field">
     <input
       type="text"
       :placeholder="placeholder"
-      v-model.trim="text"
+      :value="modelValue" 
       @input="onInput"
       @keypress="onKeypress"
-      @focus="$emit('focus')"
     />
     <a
       href="#"
@@ -39,12 +38,10 @@
     'change',
   ])
 
-  const text = ref('')
-
-  const isClearBtnDisabled = computed(() => text.value === '')
+  const isClearBtnDisabled = computed(() => props.modelValue.value === '')
 
   function clear() {
-    text.value = ''
+    emit('update:modelValue', '')
   }
 
   function onInput(e) {

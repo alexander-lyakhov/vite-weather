@@ -2,15 +2,25 @@
   <overlay :is-visible="isOverlayVisible" />
   <div class="combobox noselect">
     <div class="combobox-header">
-      <textfield v-bind="$attrs" @focus="open" @update:modelValue="onInput" @click.stop />
+      <textfield
+        v-bind="$attrs"
+        v-model="city"
+        @update:modelValue="debouncedGetCities"
+        @click.stop
+      />
     </div>
     <ul class="list" v-show="isListVisible">
-      <li class="place" v-for="item in places" :key="id">
-        <span class="place-name">
-          {{ item.text }}
+      <li
+        class="place"
+        v-for="item in places"
+        :key="item.id"
+        @click="select(item)"
+      >
+        <span class="place-city">
+          {{ item.address.city }}
         </span>
-        <span class="place-fullname">
-          {{ item.place_name }}
+        <span class="place-label">
+          {{ item.address.label }}
         </span>
       </li>
     </ul>
@@ -28,9 +38,9 @@
   const isOverlayVisible = ref(false)
   const isListVisible = ref(false)
 
+  const city = ref('')
+  const places = ref([])
   const debouncedGetCities = debounce(getCities, 500)
-
-  const places = computed(() => cities.features.filter(el => el.place_type.includes('place')))
 
   function open() {
     document.body.addEventListener('click', close)
@@ -46,14 +56,18 @@
     isListVisible.value = false
   }
 
-  function onInput(e) {
-    // console.log(e)
-    debouncedGetCities(e)
+  async function getCities(query) {
+    const { items } = await api.fetchCities(query)
+
+    places.value = items.filter(el => el.localityType === 'city')
+    places.value.length && open()
+    
+    console.log(items)
   }
 
-  async function getCities(e) {
-    const res = await api.fetchCities(e)
-    console.log(res)
+  async function select(item) {
+    city.value = item.address.city
+    await api.lookup(item.id)
   }
 </script>
 
@@ -100,11 +114,11 @@
         }
       }
 
-      &-name {
+      &-city {
         padding: .25rem 0
       }
 
-      &-fullname {
+      &-label {
         font-size: .75rem;
         color: $text-300;
         padding: .25rem 0
