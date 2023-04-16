@@ -20,6 +20,8 @@
 
  	https://docs.mapbox.com/api/search/geocoding/.
 
+ 	https://api.mapbox.com/geocoding/v5/mapbox.places/dne.json?proximity=ip&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2p0MG01MXRqMW45cjQzb2R6b2ptc3J4MSJ9.zA2W0IkI0c6KaAhJfk9bWg
+
  Here Geocoding & Search API: The Here Geocoding & Search API provides forward and reverse geocoding for addresses and
  coordinates, and includes information about cities. The API offers a free plan that allows up to 250,000 transactions
  per month. You can check out their documentation and sign up for an API key at

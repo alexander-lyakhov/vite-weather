@@ -1,0 +1,251 @@
+﻿{
+  "type": "FeatureCollection",
+  "query": [
+    "moscow"
+  ],
+  "features": [
+    {
+      "id": "place.558274",
+      "type": "Feature",
+      "place_type": [
+        "region",
+        "place"
+      ],
+      "relevance": 1,
+      "properties": {
+        "short_code": "RU-MOW",
+        "wikidata": "Q649",
+        "mapbox_id": "dXJuOm1ieHBsYzpDSVRD"
+      },
+      "text": "Moscow",
+      "place_name": "Moscow, Russia",
+      "bbox": [
+        36.80317,
+        55.142126,
+        37.967345,
+        56.021479
+      ],
+      "center": [
+        37.6174943,
+        55.7504461
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.6174943,
+          55.7504461
+        ]
+      },
+      "context": [
+        {
+          "id": "country.8898",
+          "short_code": "ru",
+          "wikidata": "Q159",
+          "mapbox_id": "dXJuOm1ieHBsYzpJc0k",
+          "text": "Russia"
+        }
+      ]
+    },
+    {
+      "id": "region.9410",
+      "type": "Feature",
+      "place_type": [
+        "region"
+      ],
+      "relevance": 1,
+      "properties": {
+        "short_code": "RU-MOS",
+        "wikidata": "Q1697",
+        "mapbox_id": "dXJuOm1ieHBsYzpKTUk"
+      },
+      "text": "Moscow Oblast",
+      "place_name": "Moscow Oblast, Russia",
+      "bbox": [
+        35.147965,
+        54.255746,
+        40.20557,
+        56.959059
+      ],
+      "center": [
+        38.0353929,
+        55.5043158
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.0353929,
+          55.5043158
+        ]
+      },
+      "context": [
+        {
+          "id": "country.8898",
+          "short_code": "ru",
+          "wikidata": "Q159",
+          "mapbox_id": "dXJuOm1ieHBsYzpJc0k",
+          "text": "Russia"
+        }
+      ]
+    },
+    {
+      "id": "place.221341932",
+      "type": "Feature",
+      "place_type": [
+        "place"
+      ],
+      "relevance": 1,
+      "properties": {
+        "wikidata": "Q499927",
+        "mapbox_id": "dXJuOm1ieHBsYzpEVEZvN0E"
+      },
+      "text": "Moscow",
+      "place_name": "Moscow, Idaho, United States",
+      "bbox": [
+        -117.03995,
+        46.58883,
+        -116.789658,
+        46.833004
+      ],
+      "center": [
+        -117.000165,
+        46.732388
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.000165,
+          46.732388
+        ]
+      },
+      "context": [
+        {
+          "id": "district.13076204",
+          "wikidata": "Q284840",
+          "mapbox_id": "dXJuOm1ieHBsYzp4NGJz",
+          "text": "Latah County"
+        },
+        {
+          "id": "region.58604",
+          "short_code": "US-ID",
+          "wikidata": "Q1221",
+          "mapbox_id": "dXJuOm1ieHBsYzo1T3c",
+          "text": "Idaho"
+        },
+        {
+          "id": "country.8940",
+          "short_code": "us",
+          "wikidata": "Q30",
+          "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+          "text": "United States"
+        }
+      ]
+    },
+    {
+      "id": "poi.944892855868",
+      "type": "Feature",
+      "place_type": [
+        "poi"
+      ],
+      "relevance": 1,
+      "properties": {
+        "foursquare": "4f3f7419e4b0808981c37baa",
+        "landmark": true,
+        "address": "Складочная ул., 3, стр. 1",
+        "category": "history museum, history, historical, museum, tourism"
+      },
+      "text": "Moscow Apple Museum",
+      "place_name": "Moscow Apple Museum, Складочная ул., 3, стр. 1, Moscow, 127015, Russia",
+      "center": [
+        37.589963,
+        55.80606
+      ],
+      "geometry": {
+        "coordinates": [
+          37.589963,
+          55.80606
+        ],
+        "type": "Point"
+      },
+      "context": [
+        {
+          "id": "postcode.3468994",
+          "mapbox_id": "dXJuOm1ieHBsYzpOTzdD",
+          "text": "127015"
+        },
+        {
+          "id": "locality.453314",
+          "mapbox_id": "dXJuOm1ieHBsYzpCdXJD",
+          "text": "округ Бутырский"
+        },
+        {
+          "id": "place.558274",
+          "short_code": "RU-MOW",
+          "wikidata": "Q649",
+          "mapbox_id": "dXJuOm1ieHBsYzpDSVRD",
+          "text": "Moscow"
+        },
+        {
+          "id": "country.8898",
+          "short_code": "ru",
+          "wikidata": "Q159",
+          "mapbox_id": "dXJuOm1ieHBsYzpJc0k",
+          "text": "Russia"
+        }
+      ]
+    },
+    {
+      "id": "place.221440236",
+      "type": "Feature",
+      "place_type": [
+        "place"
+      ],
+      "relevance": 1,
+      "properties": {
+        "wikidata": "Q964761",
+        "mapbox_id": "dXJuOm1ieHBsYzpEVExvN0E"
+      },
+      "text": "Moscow Mills",
+      "place_name": "Moscow Mills, Missouri, United States",
+      "bbox": [
+        -90.966781,
+        38.877923,
+        -90.802008,
+        38.997664
+      ],
+      "center": [
+        -90.918192,
+        38.947827
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.918192,
+          38.947827
+        ]
+      },
+      "context": [
+        {
+          "id": "district.13731564",
+          "wikidata": "Q484582",
+          "mapbox_id": "dXJuOm1ieHBsYzowWWJz",
+          "text": "Lincoln County"
+        },
+        {
+          "id": "region.271596",
+          "short_code": "US-MO",
+          "wikidata": "Q1581",
+          "mapbox_id": "dXJuOm1ieHBsYzpCQ1Rz",
+          "text": "Missouri"
+        },
+        {
+          "id": "country.8940",
+          "short_code": "us",
+          "wikidata": "Q30",
+          "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+          "text": "United States"
+        }
+      ]
+    }
+  ],
+  "attribution": "NOTICE: © 2023 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained. POI(s) provided by Foursquare."
+}

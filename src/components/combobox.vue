@@ -5,22 +5,28 @@
       <textfield v-bind="$attrs" @focus="open" @click.stop />
     </div>
     <ul class="list" v-show="isListVisible">
-      <li>Dnepr</li>
-      <li>Moskow</li>
-      <li>Leningrad</li>
-      <li>Odessa</li>
-      <li>Voronezh</li>
+      <li class="place" v-for="item in places" :key="id">
+        <span class="place-name">
+          {{ item.text }}
+        </span>
+        <span class="place-fullname">
+          {{ item.place_name }}
+        </span>
+      </li>
     </ul>
   </div>
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
   import overlay from '@/components/modal/overlay'
   import textfield from '@/components/textfield'
+  import cities from '@/store/cities.json'
 
   const isOverlayVisible = ref(false)
   const isListVisible = ref(false)
+
+  const places = computed(() => cities.features.filter(el => el.place_type.includes('place')))
 
   function open() {
     document.body.addEventListener('click', close)
@@ -53,17 +59,41 @@
     top: 100%;
     padding: .5rem;
 
-    li {
+    .place {
       background: $bg-800;
-      padding: .75rem .5rem;
+      display: grid;
+      position: relative;
+      padding: .25rem .5rem;
       cursor: pointer;
-      
+      transition: padding .2s;
+
       &:not(:last-child) {
         margin-bottom: .25rem;
       }
 
       &:hover {
-        background: $bg-600;
+        padding-left: 1.5rem;
+
+        &:after {
+          content: '';
+          background: $accent-green;
+          display: block;
+          width: 3px;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
+
+      &-name {
+        padding: .25rem 0
+      }
+
+      &-fullname {
+        font-size: .75rem;
+        color: $text-300;
+        padding: .25rem 0
       }
     }
   }
