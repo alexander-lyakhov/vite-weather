@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed, onMounted } from 'vue'
   import { useStore } from 'vuex'
   import card from '@/components/card'
 
@@ -25,6 +25,8 @@
   const cards = computed(() => store.state.cards)
 
   const isVisible = computed(() => cards.value.length < 5)
+
+  onMounted(() => addCard())
 
   function addCard() {
     store.dispatch('addCard')

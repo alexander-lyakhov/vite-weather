@@ -2,6 +2,7 @@
   <div class="text-field">
     <input
       type="text"
+      ref="textinput"
       :placeholder="placeholder"
       :value="modelValue" 
       @input="$emit('update:modelValue', $event.target.value)"
@@ -18,7 +19,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed, onMounted } from 'vue'
   import IconDelete from '@/assets/icons/x.svg'
 
   const props = defineProps({
@@ -37,7 +38,10 @@
     'change',
   ])
 
+  const textinput = ref(null)
   const isClearBtnDisabled = computed(() => props.modelValue.value === '')
+
+  onMounted(() => textinput.value.focus())
 
   function clear() {
     emit('update:modelValue', '')

@@ -2,7 +2,7 @@
   <overlay :is-visible="isOverlayVisible" />
   <div class="searchbox noselect">
     <div class="searchbox-header">
-      <textfield
+      <text-field
         v-bind="$attrs"
         v-model="text"
         @update:modelValue="debouncedGetCities"
@@ -33,7 +33,7 @@
   import { ref, computed } from 'vue'
   import { debounce } from 'lodash'
   import overlay from '@/components/modal/overlay'
-  import textfield from '@/components/textfield'
+  import textField from '@/components/text-field'
   import cities from '@/store/cities.json'
   import api from '@/api'
 

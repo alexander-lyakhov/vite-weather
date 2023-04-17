@@ -7,8 +7,8 @@ export default createStore({
   strict: true,
 
   state: () => ({
-    cards: [{uid: 'lghpzx7o', name: 'Dnipro', country: 'UA', ...data}]
-    // cards: []
+    // cards: [{uid: 'lghpzx7o', name: 'Dnipro', country: 'UA', ...data}]
+    cards: []
   }),
 
   getters: {

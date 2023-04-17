@@ -8,7 +8,7 @@
 
       <div class="card-header">
         <span class="title">
-          <template v-if="data?.city">
+          <template v-if="isCerdDefined">
             {{ data?.city }}, {{ data?.countryCode }}
           </template>
         </span>
@@ -21,6 +21,7 @@
         </a>
         <a
           class="btn btn-icon"
+          :class="classObj"
           href="#"
           @click.prevent
         >
@@ -75,12 +76,12 @@
   const isInFavorites = ref(false)
   const selectedTab = ref(cardTabs[0])
 
-  const data = computed(() =>
-    store.state.cards.find(el => el.uid === props.uid)
-  )
+  const data = computed(() => store.state.cards.find(el => el.uid === props.uid))
+  const isCerdDefined = computed(() => !!data.value.city)
 
   const classObj = computed(() => ({
-    'has-accent': isInFavorites.value
+    'has-accent': isInFavorites.value,
+    'is-disabled': !isCerdDefined.value
   }))
 
   const selectedTabView = computed(() =>
@@ -114,6 +115,7 @@
     display: grid;
     grid-template-columns: 1fr repeat(3, 32px);
     grid-gap: .25rem;
+    align-items: center;
     margin-top: .5rem;
   }
 
