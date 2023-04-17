@@ -1,7 +1,11 @@
 ﻿<template>
   <div class="card">
     <slot>
-      <search-box placeholder="Search City" />
+      <search-box
+        placeholder="Search City"
+        @found="onPlaceFound"
+      />
+
       <div class="card-header">
         <span class="title">
           <template v-if="data?.name">
@@ -85,6 +89,10 @@
   
   function toggleFavorites() {
     isInFavorites.value = !isInFavorites.value
+  }
+
+  function onPlaceFound(e) {
+    console.log(e)
   }
 </script>
 

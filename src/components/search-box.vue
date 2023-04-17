@@ -35,6 +35,8 @@
   import cities from '@/store/cities.json'
   import api from '@/api'
 
+  const emit = defineEmits(['found'])
+
   const isOverlayVisible = ref(false)
   const isListVisible = ref(false)
 
@@ -42,14 +44,14 @@
   const places = ref([])
   const debouncedGetCities = debounce(getCities, 500)
 
-  function open() {
+  function showList() {
     document.body.addEventListener('click', close)
 
     isOverlayVisible.value = true
     isListVisible.value = true
   }
 
-  function close() {
+  function hideList() {
     document.body.removeEventListener('click', close)
 
     isOverlayVisible.value = false
@@ -57,17 +59,22 @@
   }
 
   async function getCities(query) {
-    const { items } = await api.fetchCities(query)
+    try {
+      const { items } = await api.fetchCities(query)
 
-    places.value = items.filter(el => el.localityType === 'city')
-    places.value.length && open()
-    
-    console.log(items)
+      places.value = items.filter(el => el.localityType === 'city')
+      places.value.length ? showList() : hideList()
+    }
+    catch(e) {
+      console.log(e)
+      hideList()
+    }
   }
 
   async function select(item) {
     city.value = item.address.city
-    await api.lookup(item.id)
+    const location = await api.lookup(item.id)
+    emit('found', {...item.address, ...location.position})
   }
 </script>
 

@@ -1,7 +1,8 @@
-﻿import axios from './config.js';
+﻿import axios from './config.js'
 
 const keys = {
-  'here': '3CkfUHnhXVT23nyBvr_8DME9MGnxjTMR5_8ZXkJJD1s'
+  'here': '3CkfUHnhXVT23nyBvr_8DME9MGnxjTMR5_8ZXkJJD1s',
+  'ow': '439d4b804bc8187953eb36d2a8c26a02',
 }
 
 export function fetchCities(query) {
@@ -24,7 +25,20 @@ export function lookup(id) {
   })
 }
 
+
+export function onecall() {
+  return axios.get('https://openweathermap.org/data/2.5/onecall', {
+    params: {
+      lat: 48.45,
+      lon: 34.9833,
+      units: 'metric',
+      appid: keys.ow
+    }
+  })
+}
+
 export default {
   fetchCities,
   lookup,
+  onecall,
 }
