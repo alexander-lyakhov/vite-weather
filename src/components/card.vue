@@ -46,9 +46,9 @@
   import IconDelete from '@/assets/icons/delete.svg'
   import combobox from '@/components/combobox'
   import selector from '@/components/selector'
-  import infoDay from '@/components/info-day'
-  import infoDaylyGraph from '@/components/info-dayly-graph'
-  import infoWeek from '@/components/info-week'
+  import tabCurrent from '@/components/tab-current'
+  import tabDaylyGraph from '@/components/tab-dayly-graph'
+  import tabWeek from '@/components/tab-week'
   import { cardTabs } from '@/config/index.js'
 
   const props = defineProps({
@@ -61,9 +61,9 @@
   provide('uid', props.uid)
 
   const components = {
-    infoDay,
-    infoDaylyGraph,
-    infoWeek
+    tabCurrent,
+    tabDaylyGraph,
+    tabWeek
   }
 
   const store = useStore()

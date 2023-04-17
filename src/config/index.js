@@ -1,14 +1,14 @@
 ﻿export const cardTabs = [
   {
     text: 'Daily',
-    value: 'infoDay',
+    value: 'tabCurrent',
   },
   {
     text: 'Hourly Graph',
-    value: 'infoHourlyGraph',
+    value: 'tabHourlyGraph',
   },
   {
     text: 'Weekly',
-    value: 'infoWeek',
+    value: 'tabWeek',
   },
 ]
