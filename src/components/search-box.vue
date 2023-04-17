@@ -73,6 +73,8 @@
 
   async function select(item) {
     city.value = item.address.city
+    hideList()
+
     const location = await api.lookup(item.id)
     emit('found', {...item.address, ...location.position})
   }

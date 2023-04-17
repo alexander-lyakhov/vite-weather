@@ -51,7 +51,7 @@
   import searchBox from '@/components/search-box'
   import selector from '@/components/selector'
   import tabCurrent from '@/components/tab-current'
-  import tabDaylyGraph from '@/components/tab-dayly-graph'
+  import tabHourlyGraph from '@/components/tab-hourly-graph'
   import tabWeek from '@/components/tab-week'
   import { cardTabs } from '@/config/index.js'
 
@@ -66,7 +66,7 @@
 
   const components = {
     tabCurrent,
-    tabDaylyGraph,
+    tabHourlyGraph,
     tabWeek
   }
 
@@ -83,16 +83,17 @@
     'has-accent': isInFavorites.value
   }))
 
-  const selectedTabView = computed(() => 
+  const selectedTabView = computed(() =>
     components[selectedTab.value.value]
   )
-  
+
   function toggleFavorites() {
     isInFavorites.value = !isInFavorites.value
   }
 
-  function onPlaceFound(e) {
-    console.log(e)
+  function onPlaceFound(data) {
+    console.log(data)
+    store.dispatch('getCardData', {uid: props.uid, ...data})
   }
 </script>
 

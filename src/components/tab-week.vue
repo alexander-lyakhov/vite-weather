@@ -50,6 +50,10 @@
       justify-content: space-between;
       align-items: center;
       padding: .5rem;
+
+      .value {
+        // font-size: 1rem;
+      }
     }
   }
 }

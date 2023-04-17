@@ -31,6 +31,15 @@ export default createStore({
     DELETE_CARD(state, uid) {
       console.log('DELETE_CARD', uid)
       state.cards = state.cards.filter(el => el.uid != uid)
+    },
+
+    UPDATE_CARD(state, data) {
+      console.log('UPDATE_CARD', data)
+      const index = state.cards.findIndex(el => el.uid === data.uid)
+      
+      if (index >= 0) {
+        state.cards[index] = data
+      }
     }
   },
 
@@ -41,6 +50,12 @@ export default createStore({
 
     deleteCard({commit}, uid) {
       commit('DELETE_CARD', uid)
+    },
+
+    async getCardData({commit}, data) {
+      console.log('getCardData', data)
+      const res = await api.onecall(data)
+      commit('UPDATE_CARD', {...data, ...res})
     }
   }
 });
