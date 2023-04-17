@@ -62,7 +62,7 @@
   )
 
   const daily = computed(() =>
-  	data.value.daily ? data.value?.daily[0] : {}
+    data.value.daily ? data.value?.daily[0] : {}
   )
 
   const temperature = computed(() => Math.round(data.value?.current?.temp) || '--')

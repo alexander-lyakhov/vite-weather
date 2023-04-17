@@ -8,8 +8,8 @@
 
       <div class="card-header">
         <span class="title">
-          <template v-if="data?.name">
-            {{ data?.name }}, {{ data?.country }}
+          <template v-if="data?.city">
+            {{ data?.city }}, {{ data?.countryCode }}
           </template>
         </span>
         <a href="#"
@@ -76,7 +76,7 @@
   const selectedTab = ref(cardTabs[0])
 
   const data = computed(() =>
-    store.getters.getByUID(props.uid)
+    store.state.cards.find(el => el.uid === props.uid)
   )
 
   const classObj = computed(() => ({

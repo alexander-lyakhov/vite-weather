@@ -4,16 +4,18 @@
     <div class="searchbox-header">
       <textfield
         v-bind="$attrs"
-        v-model="city"
+        v-model="text"
         @update:modelValue="debouncedGetCities"
+        @keydown="onKeydown"
         @click.stop
       />
     </div>
     <ul class="searchbox-list" v-show="isListVisible">
       <li
         class="place"
-        v-for="item in places"
+        v-for="(item, index) in list"
         :key="item.id"
+        :class="{'is-active': isItemActive(index)}"
         @click="select(item)"
       >
         <span class="place-city">
@@ -40,9 +42,31 @@
   const isOverlayVisible = ref(false)
   const isListVisible = ref(false)
 
-  const city = ref('')
-  const places = ref([])
-  const debouncedGetCities = debounce(getCities, 500)
+  const text = ref('')
+  const list = ref([])
+  const activeListIndex = ref(-1)
+  const debouncedGetCities = debounce(fetchList, 500)
+
+  function onKeydown(e) {
+    if (list.value.length) {
+      if (e.key === 'ArrowUp' && --activeListIndex.value < 0) {
+        activeListIndex.value = list.value.length - 1
+      }
+
+      if (e.key === 'ArrowDown' && ++activeListIndex.value >= list.value.length) {
+        activeListIndex.value = 0
+      }
+
+      if (e.key === 'Enter') {
+        select(list.value[activeListIndex.value])
+      }
+      // console.log(e.key, activeListIndex.value, list.value[activeListIndex.value])
+    }
+  }
+
+  function isItemActive(index) {
+    return index === activeListIndex.value
+  }
 
   function showList() {
     document.body.addEventListener('click', close)
@@ -58,12 +82,13 @@
     isListVisible.value = false
   }
 
-  async function getCities(query) {
+  async function fetchList(query) {
+    console.log('fetchList', query)
     try {
       const { items } = await api.fetchCities(query)
-
-      places.value = items.filter(el => el.localityType === 'city')
-      places.value.length ? showList() : hideList()
+      list.value = items.filter(el => el.localityType === 'city')
+      list.value.length ? showList() : hideList()
+      activeListIndex.value = -1
     }
     catch(e) {
       console.log(e)
@@ -72,7 +97,7 @@
   }
 
   async function select(item) {
-    city.value = item.address.city
+    text.value = item.address.city
     hideList()
 
     const location = await api.lookup(item.id)
@@ -108,7 +133,8 @@
         margin-bottom: .25rem;
       }
 
-      &:hover {
+      &:hover, &.is-active {
+        background: lighten($bg-800, 5%);
         padding-left: 1.5rem;
 
         &:after {

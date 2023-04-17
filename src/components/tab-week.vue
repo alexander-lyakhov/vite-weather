@@ -45,15 +45,17 @@
     height: 100%;
 
     li {
-      background: $bg-600;
+      background: $bg-800;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: .5rem;
 
-      .value {
-        // font-size: 1rem;
+      /*
+      &:not(:last-child) {
+        border-bottom: 1px solid $bg-600;
       }
+      */
     }
   }
 }

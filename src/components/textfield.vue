@@ -4,8 +4,7 @@
       type="text"
       :placeholder="placeholder"
       :value="modelValue" 
-      @input="onInput"
-      @keypress="onKeypress"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
     <a
       href="#"
@@ -44,16 +43,19 @@
     emit('update:modelValue', '')
   }
 
+  /*
   function onInput(e) {
     emit('update:modelValue', e.target.value)
   }
 
   function onKeypress(e) {
+    console.log(e)
     if (e.keyCode === 13) {
       onInput(e)
       emit('change', e.target.value)
     }
   }
+  */
 </script>
 
 <style lang="scss" scoped>
