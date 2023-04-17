@@ -1,7 +1,7 @@
 ﻿<template>
   <overlay :is-visible="isOverlayVisible" />
-  <div class="combobox noselect">
-    <div class="combobox-header">
+  <div class="searchbox noselect">
+    <div class="searchbox-header">
       <textfield
         v-bind="$attrs"
         v-model="city"
@@ -9,7 +9,7 @@
         @click.stop
       />
     </div>
-    <ul class="list" v-show="isListVisible">
+    <ul class="searchbox-list" v-show="isListVisible">
       <li
         class="place"
         v-for="item in places"
@@ -72,14 +72,14 @@
 </script>
 
 <style lang="scss" scoped>
-.combobox {
+.searchbox {
   background: $bg-600;
   margin: -0.5rem -0.5rem 0;
   position: relative;
   padding: .5rem;
   z-index: 1;
 
-  .list {
+  &-list {
     background: $bg-700;
     width: 100%;
     position: absolute;

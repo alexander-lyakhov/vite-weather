@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="card">
     <slot>
-      <combobox placeholder="Search City" />
+      <search-box placeholder="Search City" />
       <div class="card-header">
         <span class="title">
           <template v-if="data?.name">
@@ -44,7 +44,7 @@
   import IconFavs from '@/assets/icons/star.svg'
   import IconReload from '@/assets/icons/reload.svg'
   import IconDelete from '@/assets/icons/delete.svg'
-  import combobox from '@/components/combobox'
+  import searchBox from '@/components/search-box'
   import selector from '@/components/selector'
   import tabCurrent from '@/components/tab-current'
   import tabDaylyGraph from '@/components/tab-dayly-graph'
