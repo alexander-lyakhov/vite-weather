@@ -35,7 +35,7 @@
 
 <style lang="scss" scoped>
 .container {
-  height: 284px;
+  min-height: 300px;
   margin-top: .25rem;
 
   ul.days {

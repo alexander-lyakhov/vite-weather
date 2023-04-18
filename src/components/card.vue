@@ -16,16 +16,16 @@
         </span>
         <a href="#"
           class="btn btn-icon"
-          :class="classObj"
+          :class="favClassObj"
           @click.prevent="toggleFavorites"
         >
           <IconFavs />
         </a>
         <a
           class="btn btn-icon"
-          :class="classObj"
+          :class="{'is-disabled': !isCerdDefined}"
           href="#"
-          @click.prevent
+          @click.prevent="reload"
         >
           <IconReload />
         </a>
@@ -83,7 +83,7 @@
   const data = computed(() => store.state.cards.find(el => el.uid === props.uid))
   const isCerdDefined = computed(() => !!data.value.city)
   const selectedTabView = computed(() => components[selectedTab.value.value])
-  const classObj = computed(() => ({
+  const favClassObj = computed(() => ({
     'has-accent': isInFavorites.value,
     'is-disabled': !isCerdDefined.value
   }))
@@ -97,6 +97,10 @@
     isLocked.value = true
     await store.dispatch('getCardData', {uid: props.uid, ...data})
     isLocked.value = false
+  }
+
+  function reload() {
+    onPlaceFound(data.value)
   }
 </script>
 
@@ -120,6 +124,12 @@
     grid-gap: .25rem;
     align-items: center;
     margin-top: .5rem;
+
+    .title {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   }
 
   &-nav {

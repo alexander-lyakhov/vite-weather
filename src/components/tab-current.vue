@@ -85,7 +85,7 @@
     text-align: center;
     display: grid;
     grid-template-columns: 5fr 2fr;
-    height: 112px;
+    height: 128px;
     align-items: center;
     
     .current {

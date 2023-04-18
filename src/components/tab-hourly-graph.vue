@@ -13,7 +13,7 @@
 
 <style lang="scss" scoped>
 .container {
-  min-height: 284px;
+  min-height: 300px;
   margin-top: .25rem;
 }
 </style>

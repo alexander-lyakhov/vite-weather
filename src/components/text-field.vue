@@ -55,7 +55,7 @@
   border: 1px solid $bg-400;
   display: flex;
   align-items: center;
-  height: 2.5rem;
+  height: 2.75rem;
   padding: 0 0.25rem 0 .5rem;
   z-index: 1;
 
