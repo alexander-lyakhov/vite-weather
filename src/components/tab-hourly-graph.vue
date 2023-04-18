@@ -26,12 +26,12 @@
     console.log(ctx)
     
     chart = new Chart(ctx, {
-      type: 'bar',
+      type: 'line',
 
       data: {
         labels: data.value.map(el => el.time),
         datasets: [{
-          label: '# of Votes',
+          label: 'Temperature',
           data: data.value.map(el => el.temp),
           borderWidth: 1
         }]
@@ -40,9 +40,10 @@
       options: {
         scalse: {
           y: {
-            beginAtZero: true
+            beginAtZero: false
           }
-        }
+        },
+        spanGaps: true
       }
     })
     
