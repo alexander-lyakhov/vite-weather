@@ -18,6 +18,18 @@ export default createStore({
 
     getByUID(state) {
       return (uid) => state.cards.find(el => el.uid === uid)
+    },
+
+    getChartData(state) {
+      return (uid) => {
+        const card = state.cards.find(el => el.uid === uid)
+        return card.hourly?.map((el, index) => {
+          return {
+            time: (index & 1) === 0 ? Math.floor(index / 2) + ':00' : Math.floor(index / 2) + ':30',
+            temp: Math.round(el.temp)
+          }
+        })
+      }
     }
   },
 

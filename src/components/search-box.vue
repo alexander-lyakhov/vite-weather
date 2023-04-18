@@ -67,9 +67,8 @@
         activeListIndex.value = 0
       }
 
-      if (e.key === 'Enter') {
-        select(list.value[activeListIndex.value])
-      }
+      e.key === 'Enter'  && select(list.value[activeListIndex.value])
+      e.key === 'Escape' && hideList()
       // console.log(e.key, activeListIndex.value, list.value[activeListIndex.value])
     }
   }
