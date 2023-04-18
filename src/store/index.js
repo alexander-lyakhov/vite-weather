@@ -53,9 +53,12 @@ export default createStore({
     },
 
     async getCardData({commit}, data) {
-      console.log('getCardData', data)
-      const res = await api.onecall(data)
-      commit('UPDATE_CARD', {...data, ...res})
+      const res = {
+        ...data,
+        ...await api.onecall(data)
+      }
+      commit('UPDATE_CARD', res)
+      return res
     }
   }
 });

@@ -45,21 +45,8 @@
 
   function clear() {
     emit('update:modelValue', '')
+    textinput.value.focus()
   }
-
-  /*
-  function onInput(e) {
-    emit('update:modelValue', e.target.value)
-  }
-
-  function onKeypress(e) {
-    console.log(e)
-    if (e.keyCode === 13) {
-      onInput(e)
-      emit('change', e.target.value)
-    }
-  }
-  */
 </script>
 
 <style lang="scss" scoped>

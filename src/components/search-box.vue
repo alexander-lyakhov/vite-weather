@@ -37,7 +37,17 @@
   import cities from '@/store/cities.json'
   import api from '@/api'
 
-  const emit = defineEmits(['found'])
+  const props = defineProps({
+    isLoading: {
+      type: Boolean,
+      default: false
+    }
+  })
+
+  const emit = defineEmits([
+    'found',
+    'update:isLoading'
+  ])
 
   const isOverlayVisible = ref(false)
   const isListVisible = ref(false)
@@ -100,8 +110,11 @@
     text.value = item.address.city
     hideList()
 
+    emit('update:isLoading', true)
+
     const location = await api.lookup(item.id)
     emit('found', {...item.address, ...location.position})
+    emit('update:isLoading', false)
   }
 </script>
 

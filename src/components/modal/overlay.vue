@@ -15,15 +15,17 @@
     }
   })
 
+  /*
   watchEffect(() => {
     document.documentElement.style.height = props.isVisible ? '100vh':'auto'
     document.documentElement.style.overflow = props.isVisible ? 'hidden':''
   })
+  */
 </script>
 
 <style lang="scss" scoped>
 .lock {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 1;
 

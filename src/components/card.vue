@@ -1,8 +1,10 @@
 ﻿<template>
   <div class="card">
+    <spinner v-model="isLocked"/>
     <slot>
       <search-box
         placeholder="Search City"
+        v-model:isLoading="isLocked"
         @found="onPlaceFound"
       />
 
@@ -44,7 +46,7 @@
 </template>
 
 <script setup>
-  import { ref, computed, provide } from 'vue'
+  import { ref, computed, provide, nextTick } from 'vue'
   import { useStore } from 'vuex'
   import IconFavs from '@/assets/icons/star.svg'
   import IconReload from '@/assets/icons/reload.svg'
@@ -54,6 +56,7 @@
   import tabCurrent from '@/components/tab-current'
   import tabHourlyGraph from '@/components/tab-hourly-graph'
   import tabWeek from '@/components/tab-week'
+  import spinner from '@/components/modal/spinner'
   import { cardTabs } from '@/config/index.js'
 
   const props = defineProps({
@@ -73,28 +76,27 @@
 
   const store = useStore()
 
+  const isLocked = ref(false)
   const isInFavorites = ref(false)
   const selectedTab = ref(cardTabs[0])
 
   const data = computed(() => store.state.cards.find(el => el.uid === props.uid))
   const isCerdDefined = computed(() => !!data.value.city)
-
+  const selectedTabView = computed(() => components[selectedTab.value.value])
   const classObj = computed(() => ({
     'has-accent': isInFavorites.value,
     'is-disabled': !isCerdDefined.value
   }))
 
-  const selectedTabView = computed(() =>
-    components[selectedTab.value.value]
-  )
-
   function toggleFavorites() {
     isInFavorites.value = !isInFavorites.value
   }
 
-  function onPlaceFound(data) {
-    console.log(data)
-    store.dispatch('getCardData', {uid: props.uid, ...data})
+  async function onPlaceFound(data) {
+    await nextTick()
+    isLocked.value = true
+    await store.dispatch('getCardData', {uid: props.uid, ...data})
+    isLocked.value = false
   }
 </script>
 
@@ -105,6 +107,7 @@
   background: $bg-700;
   display: grid;
   grid-auto-rows: min-content;
+  position: relative;
   padding: .5rem;
   cursor: default;
 
