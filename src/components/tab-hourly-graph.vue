@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-  import { ref, computed, inject, onMounted  } from 'vue'
+  import { ref, computed, inject, onMounted, watch  } from 'vue'
   import { useStore } from 'vuex'
   import chartOptions from '@/config/chart.js'
   import {
@@ -39,10 +39,17 @@
 
   const canvasRef = ref(null)
   let chart = null
+  let ctx = null
 
-  onMounted(() => {
-    const ctx = canvasRef.value
-    console.log(ctx)
+  watch(() => data.value, () => {
+    chart.destroy()
+    initChart()
+  })
+
+  onMounted(() => initChart())
+
+  function initChart() {
+    ctx = canvasRef.value
     
     chart = new Chart(ctx, {
       type: 'line',
@@ -57,7 +64,7 @@
       },
 
     })
-  })
+  }
 
 </script>
 
