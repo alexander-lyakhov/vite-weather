@@ -6,6 +6,7 @@
         placeholder="Search City"
         v-model:isLoading="isLocked"
         @found="onPlaceFound"
+        @keydown="onKeydown"
       />
 
       <div class="card-header">
@@ -97,6 +98,12 @@
     isLocked.value = true
     await store.dispatch('getCardData', {uid: props.uid, ...data})
     isLocked.value = false
+  }
+
+  function onKeydown(e) {
+    if (e.altKey && [1,2,3].includes(+e.key)) {
+      selectedTab.value = cardTabs[+e.key - 1]
+    }
   }
 
   function reload() {

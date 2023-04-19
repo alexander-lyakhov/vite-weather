@@ -47,6 +47,8 @@ main {
   padding: .5rem;
 
   .card-add {
+    min-height: 448px;
+
     .btn-add {
       font-size: 8rem;
       color: $text-400;

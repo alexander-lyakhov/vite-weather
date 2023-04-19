@@ -5,9 +5,9 @@
       <text-field
         v-bind="$attrs"
         v-model="text"
+        :isBusy="isListFetching"
         @update:modelValue="debouncedGetCities"
         @keydown="onKeydown"
-        @click.stop
       />
     </div>
     <ul class="searchbox-list" v-show="isListVisible">
@@ -51,6 +51,7 @@
 
   const isOverlayVisible = ref(false)
   const isListVisible = ref(false)
+  const isListFetching = ref(false)
 
   const text = ref('')
   const list = ref([])
@@ -94,13 +95,18 @@
   async function fetchList(query) {
     console.log('fetchList', query)
     try {
+      isListFetching.value = true
+      
       const { items } = await api.fetchCities(query)
       list.value = items.filter(el => el.localityType === 'city')
       list.value.length ? showList() : hideList()
       activeListIndex.value = -1
+      
+      isListFetching.value = false
     }
     catch(e) {
       console.log(e)
+      isListFetching.value = false
       hideList()
     }
   }
@@ -158,6 +164,12 @@
           position: absolute;
           left: 0;
           top: 0;
+        }
+      }
+
+      &.is-active {
+        &:after {
+          background: $accent-orange;
         }
       }
 
