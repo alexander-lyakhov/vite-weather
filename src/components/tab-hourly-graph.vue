@@ -43,7 +43,8 @@
   let chart = null
 
   watch(() => data.value, async () => {
-    chart.data.datasets[0].data = data.value?.map(el => el.temp),
+    chart.data.labels = data.value?.map(el => el.time)
+    chart.data.datasets[0].data = data.value?.map(el => el.temp)
     chart.update()
   })
 

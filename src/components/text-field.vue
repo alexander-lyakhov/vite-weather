@@ -11,10 +11,12 @@
       href="#"
       class="btn btn-icon"
       :class="{'is-disabled': isClearBtnDisabled}"
+      v-show="!isBusy"
       @click.stop="clear"
     >
       <IconDelete />
     </a>
+    <div v-show="isBusy" class="text-field__spinner" />
   </div>
 </template>
 
@@ -30,6 +32,10 @@
     modelValue: {
       type: String,
       default: ''
+    },
+    isBusy: {
+      type: Boolean,
+      default: false
     }
   })
 
@@ -79,6 +85,19 @@
     &.is-disabled svg {
       color: $text-400;
     }
+  }
+
+  &__spinner {
+    border-left: 2px solid $bg-200;
+    border-top: 2px solid $bg-200;
+    border-right: 2px solid $bg-200;
+    border-bottom: 2px solid transparent;
+    border-radius: 50%;
+    width: 1.25rem;
+    height: 1.25rem;
+    position: relative;
+    left: -6px;
+    animation: spin .5s linear infinite;
   }
 }
 </style>
