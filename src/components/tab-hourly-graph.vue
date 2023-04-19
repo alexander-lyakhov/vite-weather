@@ -48,23 +48,22 @@
   })
 
   onMounted(() => {
-    init()
+    initGraph()
     window.addEventListener('resize', onResize)
   })
 
   onUnmounted(() => {
-    console.log('onUnmounted')
+    window.removeEventListener('resize', onResize)
     chart.destroy()
   })
 
   function onResize(e) {
-    console.log('handleResize', e)
     chart.options.animations = 'none'
     chart.destroy()
-    init()
+    initGraph()
   }
 
-  function init() {
+  function initGraph() {
     const ctx = canvasRef.value
     
     chart = new Chart(ctx, {
@@ -78,10 +77,8 @@
           data: data.value?.map(el => el.temp),
         }]
       },
-
     })
   }
-
 </script>
 
 <style lang="scss" scoped>

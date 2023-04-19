@@ -39,6 +39,7 @@
 
   span {
     color: $text-200;
+    border-bottom: 2px solid transparent;
     height: calc(100% + 2px);
     display: flex;
     align-items: center;
