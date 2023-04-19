@@ -9,10 +9,29 @@
 <script setup>
   import { ref, computed, inject, onMounted  } from 'vue'
   import { useStore } from 'vuex'
-  import Chart from 'chart.js/auto';
+  import chartOptions from '@/config/chart.js'
+  import {
+    Chart,
+    Colors,
+    LineController,
+    LineElement,
+    PointElement,
+    CategoryScale,
+    LinearScale,
+    Legend,
+    Tooltip
+  } from 'chart.js'
 
-  const props = defineProps({
-  })
+  Chart.register(
+    Colors,
+    LineController,
+    LineElement,
+    PointElement,
+    CategoryScale,
+    LinearScale,
+    Legend,
+    Tooltip
+  )
 
   const uid = inject('uid')
   const store = useStore()
@@ -20,14 +39,6 @@
 
   const canvasRef = ref(null)
   let chart = null
-  Chart.defaults.elements.point.style = 'rect'
-  Chart.defaults.elements.point.radius = 2
-  Chart.defaults.elements.point.hitRadius = 6
-  Chart.defaults.elements.point.hoverRadius = 6
-  // Chart.defaults.elements.line.fill = true
-  // Chart.defaults.elements.line.stepped = true
-  // Chart.defaults.elements.line.tension = 3
-  Chart.defaults.elements.line.capBezierPoints = false
 
   onMounted(() => {
     const ctx = canvasRef.value
@@ -35,53 +46,17 @@
     
     chart = new Chart(ctx, {
       type: 'line',
+      options: chartOptions,
 
       data: {
         labels: data.value?.map(el => el.time),
         datasets: [{
           label: 'Temperature',
           data: data.value?.map(el => el.temp),
-          borderWidth: 1,
         }]
       },
 
-      options: {
-        scalse: {
-          y: {
-            beginAtZero: false
-          },
-          color: '#fff'
-        },
-        spanGaps: true,
-        maintainAspectRatio: false,
-        plugins: {
-          tooltip: {
-            titleFont: {
-              family: 'verdana',
-              size: 16,
-              weight: 'normal'
-            },
-            bodyFont: {
-              family: 'verdana',
-              size: 16,
-            },
-            boxWidth: 8,
-            boxHeight: 8,
-            boxPadding: 4
-          },
-          legend: {
-            labels: {
-              color: '#e0e0e0',
-              font: {
-                family: 'verdana',
-                size: 14,
-              }
-            }
-          }
-        }
-      }
     })
-    
   })
 
 </script>
