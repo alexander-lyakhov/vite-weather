@@ -62,12 +62,12 @@
       if (e.key === 'ArrowUp' && --activeListIndex.value < 0) {
         activeListIndex.value = list.value.length - 1
       }
-
       if (e.key === 'ArrowDown' && ++activeListIndex.value >= list.value.length) {
         activeListIndex.value = 0
       }
-
-      e.key === 'Enter'  && select(list.value[activeListIndex.value])
+      if (e.key === 'Enter') {
+        activeListIndex.value >= 0 && select(list.value[activeListIndex.value])
+      }
       e.key === 'Escape' && hideList()
       // console.log(e.key, activeListIndex.value, list.value[activeListIndex.value])
     }
