@@ -57,7 +57,7 @@
   import tabHourlyGraph from '@/components/tab-hourly-graph'
   import tabWeek from '@/components/tab-week'
   import spinner from '@/components/modal/spinner'
-  import { cardTabs } from '@/config/index.js'
+  import { cardTabs } from '@/config/tabs.js'
 
   const props = defineProps({
     uid: {

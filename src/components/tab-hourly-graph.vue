@@ -7,8 +7,9 @@
 </template>
 
 <script setup>
-  import { ref, computed, inject, onMounted, watch  } from 'vue'
+  import { ref, computed, inject, onMounted, onUnmounted, watch } from 'vue'
   import { useStore } from 'vuex'
+  import { debounce } from 'lodash'
   import chartOptions from '@/config/chart.js'
   import {
     Chart,
@@ -36,20 +37,35 @@
   const uid = inject('uid')
   const store = useStore()
   const data = computed(() => store.getters.getChartData(uid))
+  const debouncedResize = debounce(onResize, 500)
 
   const canvasRef = ref(null)
   let chart = null
-  let ctx = null
 
-  watch(() => data.value, () => {
-    chart.destroy()
-    initChart()
+  watch(() => data.value, async () => {
+    chart.data.datasets[0].data = data.value?.map(el => el.temp),
+    chart.update()
   })
 
-  onMounted(() => initChart())
+  onMounted(() => {
+    init()
+    window.addEventListener('resize', onResize)
+  })
 
-  function initChart() {
-    ctx = canvasRef.value
+  onUnmounted(() => {
+    console.log('onUnmounted')
+    chart.destroy()
+  })
+
+  function onResize(e) {
+    console.log('handleResize', e)
+    chart.options.animations = 'none'
+    chart.destroy()
+    init()
+  }
+
+  function init() {
+    const ctx = canvasRef.value
     
     chart = new Chart(ctx, {
       type: 'line',
