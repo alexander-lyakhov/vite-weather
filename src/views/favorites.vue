@@ -2,7 +2,7 @@
   <main>
     <card
       no-search
-      v-for="card in cards"
+      v-for="card in favorites"
       :key="card.uid"
       :uid="card.uid"
       @delete="deleteCard"
@@ -16,11 +16,11 @@
   import card from '@/components/card'
 
   const store = useStore()
-  const cards = computed(() => store.state.favorites)
+  const favorites = computed(() => store.state.favorites)
 
   function deleteCard(uid) {
-    console.log('deleteCard', uid)
-    store.dispatch('deleteCard', uid)
+    console.log('deleteFromFavorites', uid)
+    store.dispatch('deleteFromFavorites', uid)
   }
 </script>
 

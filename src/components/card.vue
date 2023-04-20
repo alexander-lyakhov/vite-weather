@@ -83,19 +83,39 @@
   const store = useStore()
 
   const isLocked = ref(false)
-  const isInFavorites = ref(false)
   const selectedTab = ref(cardTabs[0])
 
-  const data = computed(() => store.state.cards.find(el => el.uid === props.uid))
-  const isCerdDefined = computed(() => !!data.value.city)
-  const selectedTabView = computed(() => components[selectedTab.value.value])
+  //
+  // Computed
+  //
+  const data = computed(() =>
+    store.state.cards.find(el => el.uid === props.uid)
+  )
+    
+    const isCerdDefined = computed(() =>
+      !!data.value.city
+    )
+    
+    const isInFavorites = computed(() =>
+      store.getters.isInFavorites(data.value.locationId)
+    )
+  
+  const selectedTabView = computed(() =>
+    components[selectedTab.value.value]
+  )
+  
   const favClassObj = computed(() => ({
     'has-accent': isInFavorites.value,
     'is-disabled': !isCerdDefined.value
   }))
 
+  //
+  // Methods
+  //
   function toggleFavorites() {
-    isInFavorites.value = !isInFavorites.value
+    isInFavorites.value
+      ? store.dispatch('removeFromFavorites', data.value.locationId)
+      : store.dispatch('addToFavorites', data.value.locationId)
   }
 
   async function onPlaceFound(data) {

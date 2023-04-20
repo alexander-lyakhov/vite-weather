@@ -31,6 +31,11 @@ export default createStore({
           }
         })
       }
+    },
+
+    isInFavorites(state) {
+      return (locationId) =>
+        state.favorites.some(el => el.locationId === locationId)
     }
   },
 
@@ -53,6 +58,16 @@ export default createStore({
       if (index >= 0) {
         state.cards[index] = data
       }
+    },
+
+    ADD_TO_FAVORITES(state, locationId) {
+      console.log('ADD_TO_FAVORITES')
+      state.favorites.push({locationId})
+    },
+
+    REMOVE_FROM_FAVORITES(state, locationId) {
+      console.log('REMOVE_FROM_FAVORITES')
+      state.favorites = state.favorites.filter(el => el.locationId !== locationId)
     }
   },
 
@@ -72,6 +87,18 @@ export default createStore({
       }
       commit('UPDATE_CARD', res)
       return res
+    },
+
+    addToFavorites({ commit, getters }, locationId) {
+      if (!getters.isInFavorites(locationId)) {
+        commit('ADD_TO_FAVORITES', locationId)
+      }
+    },
+
+    removeFromFavorites({ commit, getters }, locationId) {
+      if (getters.isInFavorites(locationId)) {
+        commit('REMOVE_FROM_FAVORITES', locationId)
+      }
     }
   }
 });

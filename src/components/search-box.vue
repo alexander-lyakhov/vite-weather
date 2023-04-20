@@ -118,7 +118,11 @@
     emit('update:isLoading', true)
 
     const location = await api.lookup(item.id)
-    emit('found', {...item.address, ...location.position})
+    emit('found', {
+      locationId: item.id,
+      ...item.address, 
+      ...location.position
+    })
     emit('update:isLoading', false)
   }
 </script>
