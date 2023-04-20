@@ -1,18 +1,12 @@
 ﻿<template>
   <main>
     <card
+      no-search
       v-for="card in cards"
       :key="card.uid"
       :uid="card.uid"
       @delete="deleteCard"
     />
-    <card
-      class="card-add noselect"
-      :uid="'empty'"
-      v-if="isVisible"
-    >
-      <div class="btn btn-add" @click="addCard">+</div>
-    </card>
   </main>
 </template>
 
@@ -26,10 +20,7 @@
 
   const isVisible = computed(() => cards.value.length < 5)
 
-  onMounted(() => {
-    console.log('onMounted')
-    addCard()
-  })
+  onMounted(() => addCard())
 
   function addCard() {
     store.dispatch('addCard')

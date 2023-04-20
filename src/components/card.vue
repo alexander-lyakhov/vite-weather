@@ -3,6 +3,7 @@
     <spinner v-model="isLocked"/>
     <slot>
       <search-box
+        v-if="!noSearch"
         placeholder="Search City"
         v-model:isLoading="isLocked"
         @found="onPlaceFound"
@@ -64,6 +65,10 @@
     uid: {
       type: String,
       required: true
+    },
+    noSearch: {
+      type: Boolean,
+      default: false
     }
   })
 
