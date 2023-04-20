@@ -92,13 +92,13 @@
     store.state.cards.find(el => el.uid === props.uid)
   )
     
-    const isCerdDefined = computed(() =>
-      !!data.value.city
-    )
-    
-    const isInFavorites = computed(() =>
-      store.getters.isInFavorites(data.value.locationId)
-    )
+  const isCerdDefined = computed(() =>
+    !!data.value?.city
+  )
+  
+  const isInFavorites = computed(() =>
+    store.getters.isInFavorites(data.value?.locationId)
+  )
   
   const selectedTabView = computed(() =>
     components[selectedTab.value.value]
@@ -114,8 +114,14 @@
   //
   function toggleFavorites() {
     isInFavorites.value
-      ? store.dispatch('removeFromFavorites', data.value.locationId)
-      : store.dispatch('addToFavorites', data.value.locationId)
+      ? store.dispatch('removeFromFavorites', {
+        cardId: props.uid,
+        locationId: data.value.locationId
+      })
+      : store.dispatch('addToFavorites', {
+        cardId: props.uid,
+        locationId: data.value.locationId
+      })
   }
 
   async function onPlaceFound(data) {

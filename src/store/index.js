@@ -60,14 +60,14 @@ export default createStore({
       }
     },
 
-    ADD_TO_FAVORITES(state, locationId) {
+    ADD_TO_FAVORITES(state, data) {
       console.log('ADD_TO_FAVORITES')
-      state.favorites.push({locationId})
+      state.favorites.push(data)
     },
 
-    REMOVE_FROM_FAVORITES(state, locationId) {
+    REMOVE_FROM_FAVORITES(state, data) {
       console.log('REMOVE_FROM_FAVORITES')
-      state.favorites = state.favorites.filter(el => el.locationId !== locationId)
+      state.favorites = state.favorites.filter(el => el.locationId !== data.locationId)
     }
   },
 
@@ -89,15 +89,15 @@ export default createStore({
       return res
     },
 
-    addToFavorites({ commit, getters }, locationId) {
-      if (!getters.isInFavorites(locationId)) {
-        commit('ADD_TO_FAVORITES', locationId)
+    addToFavorites({ commit, getters }, data) {
+      if (!getters.isInFavorites(data.locationId)) {
+        commit('ADD_TO_FAVORITES', data)
       }
     },
 
-    removeFromFavorites({ commit, getters }, locationId) {
-      if (getters.isInFavorites(locationId)) {
-        commit('REMOVE_FROM_FAVORITES', locationId)
+    removeFromFavorites({ commit, getters }, data) {
+      if (getters.isInFavorites(data.locationId)) {
+        commit('REMOVE_FROM_FAVORITES', data)
       }
     }
   }
