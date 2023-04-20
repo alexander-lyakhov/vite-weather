@@ -16,15 +16,7 @@
   import card from '@/components/card'
 
   const store = useStore()
-  const cards = computed(() => store.state.cards)
-
-  const isVisible = computed(() => cards.value.length < 5)
-
-  onMounted(() => addCard())
-
-  function addCard() {
-    store.dispatch('addCard')
-  }
+  const cards = computed(() => store.state.favorites)
 
   function deleteCard(uid) {
     console.log('deleteCard', uid)

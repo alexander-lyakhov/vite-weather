@@ -9,7 +9,7 @@
     <card
       class="card-add noselect"
       :uid="'empty'"
-      v-if="isVisible"
+      v-if="isAddCardVisible"
     >
       <div class="btn btn-add" @click="addCard">+</div>
     </card>
@@ -24,11 +24,10 @@
   const store = useStore()
   const cards = computed(() => store.state.cards)
 
-  const isVisible = computed(() => cards.value.length < 5)
+  const isAddCardVisible = computed(() => cards.value.length < 5)
 
   onMounted(() => {
-    console.log('onMounted')
-    addCard()
+    !cards.value.length && addCard()
   })
 
   function addCard() {
