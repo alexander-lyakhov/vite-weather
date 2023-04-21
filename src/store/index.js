@@ -89,6 +89,11 @@ export default createStore({
       return res
     },
 
+    loadFromFavorites() {
+      const favorites = JSON.parse(localStorage.getItem('favorites'))
+      console.log('loadFromFavorites', favorites)
+    },
+
     addToFavorites({ commit, state, getters }, data) {
       if (!getters.isInFavorites(data.locationId)) {
         commit('ADD_TO_FAVORITES', data)
@@ -101,9 +106,13 @@ export default createStore({
       }
     },
 
-    removeFromFavorites({ commit, getters }, data) {
+    removeFromFavorites({ commit, state, getters }, data) {
       if (getters.isInFavorites(data.locationId)) {
         commit('REMOVE_FROM_FAVORITES', data)
+
+        const favorites = state.favorites.map(el => el.locationId)
+        console.log(favorites)
+        localStorage.setItem('favorites', JSON.stringify(favorites))
       }
     }
   }

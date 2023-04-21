@@ -18,6 +18,10 @@
   const store = useStore()
   const favorites = computed(() => store.state.favorites)
 
+  onMounted(() => {
+    store.dispatch('loadFromFavorites')
+  })
+
   function deleteCard(uid) {
     console.log('deleteFromFavorites', uid)
     store.dispatch('deleteFromFavorites', uid)
