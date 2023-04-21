@@ -50,6 +50,7 @@
 <script setup>
   import { ref, computed, provide, nextTick } from 'vue'
   import { useStore } from 'vuex'
+  import { useRoute } from 'vue-router'
   import IconFavs from '@/assets/icons/star.svg'
   import IconReload from '@/assets/icons/reload.svg'
   import IconDelete from '@/assets/icons/delete.svg'
@@ -80,16 +81,24 @@
     tabWeek
   }
 
+  const dataSrc = {
+    'home': 'cards',
+    'favorites': 'favorites'
+  }
+
   const store = useStore()
+  const route = useRoute()
 
   const isLocked = ref(false)
   const selectedTab = ref(cardTabs[0])
+
+  console.log(route.name)
 
   //
   // Computed
   //
   const data = computed(() =>
-    store.state.cards.find(el => el.uid === props.uid)
+    store.state[dataSrc[route.name]]?.find(el => el.uid === props.uid)
   )
     
   const isCerdDefined = computed(() =>
@@ -114,14 +123,8 @@
   //
   function toggleFavorites() {
     isInFavorites.value
-      ? store.dispatch('removeFromFavorites', {
-        cardId: props.uid,
-        locationId: data.value.locationId
-      })
-      : store.dispatch('addToFavorites', {
-        cardId: props.uid,
-        locationId: data.value.locationId
-      })
+      ? store.dispatch('removeFromFavorites', data.value)
+      : store.dispatch('addToFavorites', data.value)
   }
 
   async function onPlaceFound(data) {
