@@ -89,9 +89,15 @@ export default createStore({
       return res
     },
 
-    addToFavorites({ commit, getters }, data) {
+    addToFavorites({ commit, state, getters }, data) {
       if (!getters.isInFavorites(data.locationId)) {
         commit('ADD_TO_FAVORITES', data)
+        
+        console.log('addToFavorites', state.favorites)
+        const favorites = state.favorites.map(el => el.locationId)
+        
+        console.log(favorites)
+        localStorage.setItem('favorites', JSON.stringify(favorites))
       }
     },
 
