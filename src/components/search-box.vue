@@ -121,7 +121,7 @@
     emit('found', {
       locationId: item.id,
       address: item.address, 
-      ...location.position
+      position: location.position
     })
     emit('update:isLoading', false)
   }

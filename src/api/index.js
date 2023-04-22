@@ -26,11 +26,11 @@ export function lookup(id) {
 }
 
 
-export function onecall({lat, lng}) {
+export function onecall({position}) {
   return axios.get('https://openweathermap.org/data/2.5/onecall', {
     params: {
-      lat: lat,
-      lon: lng,
+      lat: position.lat,
+      lon: position.lng,
       units: 'metric',
       appid: keys.ow
     }

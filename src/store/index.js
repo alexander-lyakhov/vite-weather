@@ -103,8 +103,7 @@ export default createStore({
         const favorites = state.favorites.map(el => ({
           address: el.address,
           locationId: el.locationId,
-          lat: el.lat,
-          lng: el.lat
+          position: data.position
         }))
         
         console.log(favorites)
@@ -119,8 +118,7 @@ export default createStore({
         const favorites = state.favorites.map(el => ({
           address: el.address,
           locationId: el.locationId,
-          lat: el.lat,
-          lng: el.lat
+          position: data.position
         }))
         console.log(favorites)
         localStorage.setItem('favorites', JSON.stringify(favorites))

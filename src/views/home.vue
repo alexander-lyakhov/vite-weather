@@ -17,26 +17,40 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from 'vue'
+  import { ref, computed, onMounted, onUnmounted } from 'vue'
   import { useStore } from 'vuex'
+  import { debounce } from 'lodash'
   import card from '@/components/card'
 
   const store = useStore()
   const cards = computed(() => store.state.cards)
 
-  const isAddCardVisible = computed(() => cards.value.length < 5)
+  const isAddCardVisible = computed(() => cards.value.length < 6)
+  const debouncedOnkeydown = debounce(onKeydown, 200)
 
   onMounted(() => {
-    !cards.value.length && addCard()
+    document.documentElement.addEventListener('keydown', debouncedOnkeydown)
+    addCard()
+  })
+  
+  onUnmounted(() => {
+    document.documentElement.removeEventListener('keydown', debouncedOnkeydown)
   })
 
   function addCard() {
-    store.dispatch('addCard')
+    if (cards.value.length < 6) {
+      store.dispatch('addCard')
+    }
   }
 
   function deleteCard(uid) {
     console.log('deleteCard', uid)
     store.dispatch('deleteCard', uid)
+  }
+
+  function onKeydown(e) {
+    console.log('HOME', e)
+    e.altKey && e.key === '+' && addCard()
   }
 </script>
 
@@ -57,7 +71,9 @@ main {
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 356px;
+      width: 100%;
+      height: 100%;
+      position: absolute;
 
       &:hover {
         color: $text-300;

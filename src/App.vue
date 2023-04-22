@@ -3,13 +3,23 @@
     <router-link class="router-link" to="/">Home</router-link>
     <router-link class="router-link" to="/favorites">Favorites</router-link>
   </nav>
-  <keep-alive>
-    <router-view></router-view>
-  </keep-alive>
+  <router-view v-slot="{Component, route}">
+    <keep-alive>
+      <component :is="Component" :key="route.path" />
+    </keep-alive>
+  </router-view>
 </template>
 
 <script setup>
+  import { onMounted } from 'vue'
+  import { useStore } from 'vuex'
   import { RouterLink, RouterView } from 'vue-router'
+
+  const store = useStore()
+
+  onMounted(() => {
+    store.dispatch('loadFromFavorites')
+  })
 </script>
     
 <style lang="scss" scoped>
