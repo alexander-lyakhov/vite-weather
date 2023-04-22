@@ -50,7 +50,7 @@
 <script setup>
   import { ref, computed, provide, nextTick } from 'vue'
   import { useStore } from 'vuex'
-  import { useRoute } from 'vue-router'
+  // import { useRoute } from 'vue-router'
   import IconFavs from '@/assets/icons/star.svg'
   import IconReload from '@/assets/icons/reload.svg'
   import IconDelete from '@/assets/icons/delete.svg'
@@ -61,6 +61,7 @@
   import tabWeek from '@/components/tab-week'
   import spinner from '@/components/modal/spinner'
   import { cardTabs } from '@/config/tabs.js'
+  import { useCardData } from '@/use/useCardData'
 
   const props = defineProps({
     uid: {
@@ -80,14 +81,17 @@
     tabHourlyGraph,
     tabWeek
   }
-
+  /*
   const dataSrc = {
     'home': 'cards',
     'favorites': 'favorites'
   }
+  */
 
   const store = useStore()
-  const route = useRoute()
+  // const route = useRoute()
+
+  const { data, isCardDefined } = useCardData(props.uid)
 
   const isLocked = ref(false)
   const selectedTab = ref(cardTabs[0])
@@ -97,13 +101,15 @@
   //
   // Computed
   //
+  /*
   const data = computed(() =>
-    store.state[dataSrc[route.name]]?.find(el => el.uid === props.uid)
+    store.state[dataSrc[route.name]]?.find(el => el.uid === data.uid)
   )
     
   const isCerdDefined = computed(() =>
     !!data.value?.address
   )
+  */
   
   const isInFavorites = computed(() =>
     store.getters.isInFavorites(data.value?.locationId)
