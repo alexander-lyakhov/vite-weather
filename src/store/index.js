@@ -84,7 +84,7 @@ export default createStore({
     async getCardData({commit}, data) {
       const res = {
         ...data,
-        ...await api.onecall(data)
+        ...await api.onecall(data.position)
       }
       commit('UPDATE_CARD', res)
       return res
@@ -109,7 +109,7 @@ export default createStore({
         const favorites = state.favorites.map(el => ({
           address: el.address,
           locationId: el.locationId,
-          position: data.position
+          position: el.position
         }))
         
         console.log(favorites)
