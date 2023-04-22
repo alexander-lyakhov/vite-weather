@@ -62,7 +62,8 @@ export default createStore({
 
     ADD_TO_FAVORITES(state, data) {
       console.log('ADD_TO_FAVORITES')
-      state.favorites.push(data)
+      const uid = Date.now().toString(36);
+      state.favorites.push({uid, ...data})
     },
 
     REMOVE_FROM_FAVORITES(state, data) {
@@ -90,7 +91,7 @@ export default createStore({
     },
 
     async loadFromFavorites({ dispatch }) {
-      const favorites = JSON.parse(localStorage.getItem('favorites'))
+      const favorites = JSON.parse(localStorage.getItem('favorites')) || []
       console.log('loadFromFavorites', favorites)
       for (let item of favorites) {
         const data = await api.onecall(item.position)

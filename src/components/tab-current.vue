@@ -53,16 +53,28 @@
 <script setup>
   import { ref, computed, inject } from 'vue'
   import { useStore } from 'vuex'
+  import { useRoute } from 'vue-router'
+
+  const dataSrc = {
+    'home': 'cards',
+    'favorites': 'favorites'
+  }
 
   const uid = inject('uid')
   const store = useStore()
+  const route = useRoute()
 
+  /*
   const data = computed(() =>
     store.getters.getByUID(uid)
   )
+  */
+  const data = computed(() =>
+    store.state[dataSrc[route.name]]?.find(el => el.uid === uid)
+  )
 
   const daily = computed(() =>
-    data.value.daily ? data.value?.daily[0] : {}
+    data.value?.daily ? data.value?.daily[0] : {}
   )
 
   const temperature = computed(() => Math.round(data.value?.current?.temp) || '--')
