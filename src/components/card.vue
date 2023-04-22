@@ -12,7 +12,7 @@
 
       <div class="card-header">
         <span class="title">
-          <template v-if="isCerdDefined">
+          <template v-if="isCardDefined">
             {{ data?.address?.city }}, {{ data?.address?.countryCode }}
           </template>
         </span>
@@ -25,7 +25,7 @@
         </a>
         <a
           class="btn btn-icon"
-          :class="{'is-disabled': !isCerdDefined}"
+          :class="{'is-disabled': !isCardDefined}"
           href="#"
           @click.prevent="reload"
         >
@@ -62,6 +62,7 @@
   import spinner from '@/components/modal/spinner'
   import { cardTabs } from '@/config/tabs.js'
   import { useCardData } from '@/use/useCardData'
+  // const { useCardData } = await import('@/use/useCardData.js')
 
   const props = defineProps({
     uid: {
@@ -96,8 +97,6 @@
   const isLocked = ref(false)
   const selectedTab = ref(cardTabs[0])
 
-  console.log(route.name)
-
   //
   // Computed
   //
@@ -106,7 +105,7 @@
     store.state[dataSrc[route.name]]?.find(el => el.uid === data.uid)
   )
     
-  const isCerdDefined = computed(() =>
+  const isCardDefined = computed(() =>
     !!data.value?.address
   )
   */
@@ -121,7 +120,7 @@
   
   const favClassObj = computed(() => ({
     'has-accent': isInFavorites.value,
-    'is-disabled': !isCerdDefined.value
+    'is-disabled': !isCardDefined.value
   }))
 
   //

@@ -2,7 +2,7 @@
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 
-export function useCardData(uid) {
+export const useCardData = (uid) => {
   const dataSrc = {
     'home': 'cards',
     'favorites': 'favorites'
@@ -15,10 +15,10 @@ export function useCardData(uid) {
     store.state[dataSrc[route.name]]?.find(el => el.uid === uid)
   )
 
-  const isCerdDefined = computed(() => !!data.value?.address
+  const isCardDefined = computed(() => !!data.value?.address)
 
   return {
     data,
-    isCerdDefined
+    isCardDefined 
   }
 }
