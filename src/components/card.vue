@@ -13,7 +13,7 @@
       <div class="card-header">
         <span class="title">
           <template v-if="isCerdDefined">
-            {{ data?.city }}, {{ data?.countryCode }}
+            {{ data?.address?.city }}, {{ data?.address?.countryCode }}
           </template>
         </span>
         <a href="#"
@@ -102,7 +102,7 @@
   )
     
   const isCerdDefined = computed(() =>
-    !!data.value?.city
+    !!data.value?.address
   )
   
   const isInFavorites = computed(() =>

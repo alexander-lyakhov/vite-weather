@@ -99,7 +99,13 @@ export default createStore({
         commit('ADD_TO_FAVORITES', data)
         
         console.log('addToFavorites', state.favorites)
-        const favorites = state.favorites.map(el => el.locationId)
+        
+        const favorites = state.favorites.map(el => ({
+          address: el.address,
+          locationId: el.locationId,
+          lat: el.lat,
+          lng: el.lat
+        }))
         
         console.log(favorites)
         localStorage.setItem('favorites', JSON.stringify(favorites))
@@ -110,7 +116,12 @@ export default createStore({
       if (getters.isInFavorites(data.locationId)) {
         commit('REMOVE_FROM_FAVORITES', data)
 
-        const favorites = state.favorites.map(el => el.locationId)
+        const favorites = state.favorites.map(el => ({
+          address: el.address,
+          locationId: el.locationId,
+          lat: el.lat,
+          lng: el.lat
+        }))
         console.log(favorites)
         localStorage.setItem('favorites', JSON.stringify(favorites))
       }

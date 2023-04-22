@@ -120,7 +120,7 @@
     const location = await api.lookup(item.id)
     emit('found', {
       locationId: item.id,
-      ...item.address, 
+      address: item.address, 
       ...location.position
     })
     emit('update:isLoading', false)
