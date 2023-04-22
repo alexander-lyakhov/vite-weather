@@ -89,9 +89,14 @@ export default createStore({
       return res
     },
 
-    loadFromFavorites() {
+    async loadFromFavorites({ dispatch }) {
       const favorites = JSON.parse(localStorage.getItem('favorites'))
       console.log('loadFromFavorites', favorites)
+      for (let item of favorites) {
+        const data = await api.onecall(item.position)
+        console.log(item, data)
+        dispatch('addToFavorites', {...item, ...data})
+      }
     },
 
     addToFavorites({ commit, state, getters }, data) {

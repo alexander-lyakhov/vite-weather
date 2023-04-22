@@ -12,11 +12,22 @@
 <script setup>
   import { ref, computed, inject } from 'vue'
   import { useStore } from 'vuex'
+  import { useRoute } from 'vue-router'
 
   const uid = inject('uid')
   const store = useStore()
+  const route = useRoute()
 
-  const data = computed(() => store.getters.getByUID(uid))
+  const dataSrc = {
+    'home': 'cards',
+    'favorites': 'favorites'
+  }
+
+  // const data = computed(() => store.getters.getByUID(uid))
+  const data = computed(() =>
+    store.state[dataSrc[route.name]]?.find(el => el.locationId === props.locationId)
+  )
+
   const days = computed(() => data.value?.daily?.slice(0, 5))
 
   function getDateByOffset(offset) {
