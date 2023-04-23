@@ -50,7 +50,7 @@
 <script setup>
   import { ref, computed, provide, nextTick } from 'vue'
   import { useStore } from 'vuex'
-  // import { useRoute } from 'vue-router'
+  import { useCardData } from '@/use/useCardData'
   import IconFavs from '@/assets/icons/star.svg'
   import IconReload from '@/assets/icons/reload.svg'
   import IconDelete from '@/assets/icons/delete.svg'
@@ -61,8 +61,6 @@
   import tabWeek from '@/components/tab-week'
   import spinner from '@/components/modal/spinner'
   import { cardTabs } from '@/config/tabs.js'
-  import { useCardData } from '@/use/useCardData'
-  // const { useCardData } = await import('@/use/useCardData.js')
 
   const props = defineProps({
     uid: {
@@ -82,16 +80,8 @@
     tabHourlyGraph,
     tabWeek
   }
-  /*
-  const dataSrc = {
-    'home': 'cards',
-    'favorites': 'favorites'
-  }
-  */
 
   const store = useStore()
-  // const route = useRoute()
-
   const { data, isCardDefined } = useCardData(props.uid)
 
   const isLocked = ref(false)
@@ -100,16 +90,6 @@
   //
   // Computed
   //
-  /*
-  const data = computed(() =>
-    store.state[dataSrc[route.name]]?.find(el => el.uid === data.uid)
-  )
-    
-  const isCardDefined = computed(() =>
-    !!data.value?.address
-  )
-  */
-  
   const isInFavorites = computed(() =>
     store.getters.isInFavorites(data.value?.locationId)
   )
@@ -132,6 +112,10 @@
       : store.dispatch('addToFavorites', data.value)
   }
 
+  function reload() {
+    onPlaceFound(data.value)
+  }
+
   async function onPlaceFound(data) {
     await nextTick()
     isLocked.value = true
@@ -143,10 +127,6 @@
     if (e.altKey && [1,2,3].includes(+e.key)) {
       selectedTab.value = cardTabs[+e.key - 1]
     }
-  }
-
-  function reload() {
-    onPlaceFound(data.value)
   }
 </script>
 

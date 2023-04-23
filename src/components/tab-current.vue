@@ -40,7 +40,7 @@
       </li>
       <li>
         <span class="key">Humidity</span>
-        <span class="value">{{ humidity }}%</span>
+        <span class="value">{{ humidity }} %</span>
       </li>
       <li>
         <span class="key">Visibility</span>
@@ -52,26 +52,10 @@
 
 <script setup>
   import { ref, computed, inject } from 'vue'
-  import { useStore } from 'vuex'
-  import { useRoute } from 'vue-router'
-
-  const dataSrc = {
-    'home': 'cards',
-    'favorites': 'favorites'
-  }
+  import { useCardData } from '@/use/useCardData'
 
   const uid = inject('uid')
-  const store = useStore()
-  const route = useRoute()
-
-  /*
-  const data = computed(() =>
-    store.getters.getByUID(uid)
-  )
-  */
-  const data = computed(() =>
-    store.state[dataSrc[route.name]]?.find(el => el.uid === uid)
-  )
+  const { data } = useCardData(uid)
 
   const daily = computed(() =>
     data.value?.daily ? data.value?.daily[0] : {}

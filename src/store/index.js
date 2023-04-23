@@ -26,7 +26,7 @@ export default createStore({
         const card = state.cards.find(el => el.uid === uid)
         return card.hourly?.map((el, index) => {
           return {
-            time: (index & 1) === 0 ? Math.floor(index / 2) + ':00' : Math.floor(index / 2) + ':30',
+            time: (index & 1) === 0 ? (index >> 1) + ':00' : (index >> 1) + ':30',
             temp: Math.round(el.temp)
           }
         })

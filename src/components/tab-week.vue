@@ -3,7 +3,7 @@
     <ul class="days">
       <li v-for="(item, index) in days" :key="index">
         <span class="date">{{ getDateByOffset(index) }}</span>
-        <span class="value">{{ getMaxTemp(item) }} / {{ getMinTemp(item) }} &#8451;</span>
+        <span class="value">{{ getMaxTemp(item) }}&#xb0; / {{ getMinTemp(item) }}&#xb0;</span>
       </li>
     </ul>
   </div>
@@ -11,22 +11,10 @@
 
 <script setup>
   import { ref, computed, inject } from 'vue'
-  import { useStore } from 'vuex'
-  import { useRoute } from 'vue-router'
+  import { useCardData } from '@/use/useCardData'
 
   const uid = inject('uid')
-  const store = useStore()
-  const route = useRoute()
-
-  const dataSrc = {
-    'home': 'cards',
-    'favorites': 'favorites'
-  }
-
-  // const data = computed(() => store.getters.getByUID(uid))
-  const data = computed(() =>
-    store.state[dataSrc[route.name]]?.find(el => el.locationId === props.locationId)
-  )
+  const { data } = useCardData(uid)
 
   const days = computed(() => data.value?.daily?.slice(0, 5))
 
@@ -61,6 +49,11 @@
       justify-content: space-between;
       align-items: center;
       padding: .5rem;
+
+      .value {
+        font-size: 1.25rem;
+        color: $text-300;
+      }
 
       /*
       &:not(:last-child) {
