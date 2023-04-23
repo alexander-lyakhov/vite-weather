@@ -8,18 +8,24 @@
       <component :is="Component" :key="route.path" />
     </keep-alive>
   </router-view>
+  <spinner v-model="isLocked" :isGlobal="true" />
 </template>
 
 <script setup>
-  import { computed, onMounted } from 'vue'
+  import { ref, computed, onMounted } from 'vue'
   import { useStore } from 'vuex'
   import { RouterLink, RouterView } from 'vue-router'
+  import spinner from '@/components/modal/spinner'
 
   const store = useStore()
+  const isLocked = ref(false)
   const favCount = computed(() => store.getters.favCount)
 
-  onMounted(() => {
-    store.dispatch('loadFromFavorites')
+  onMounted(async () => {
+    isLocked.value = true
+    store.dispatch('loadFromFavorites').finally(() =>
+      isLocked.value = false
+    )
   })
 </script>
     
