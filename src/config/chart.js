@@ -1,7 +1,7 @@
 ﻿export default {
   spanGaps: true,
   maintainAspectRatio: false,
-  // animation: false,
+  animation: false,
 
   scales: {
     x: {

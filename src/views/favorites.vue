@@ -11,12 +11,16 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from 'vue'
+  import { ref, computed, onActivated } from 'vue'
   import { useStore } from 'vuex'
   import card from '@/components/card'
 
   const store = useStore()
   const favorites = computed(() => store.state.favorites)
+
+  onActivated(() =>
+    store.commit('SET_DATA_SRC', 'favorites')
+  )
 
   function deleteCard(uid) {
     console.log('deleteFromFavorites', uid)

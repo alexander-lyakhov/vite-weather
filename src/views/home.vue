@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted, onUnmounted } from 'vue'
+  import { ref, computed, onMounted, onUnmounted, onActivated } from 'vue'
   import { useStore } from 'vuex'
   import { debounce } from 'lodash'
   import card from '@/components/card'
@@ -27,6 +27,10 @@
 
   const isAddCardVisible = computed(() => cards.value.length < 6)
   const debouncedOnkeydown = debounce(onKeydown, 200)
+
+  onActivated(() =>
+    store.commit('SET_DATA_SRC', 'cards')
+  )
 
   onMounted(() => {
     document.documentElement.addEventListener('keydown', debouncedOnkeydown)
@@ -44,12 +48,10 @@
   }
 
   function deleteCard(uid) {
-    console.log('deleteCard', uid)
     store.dispatch('deleteCard', uid)
   }
 
   function onKeydown(e) {
-    console.log('HOME', e)
     e.altKey && e.key === '+' && addCard()
   }
 </script>

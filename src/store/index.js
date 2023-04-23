@@ -7,9 +7,9 @@ export default createStore({
   strict: true,
 
   state: () => ({
-    // cards: [{uid: 'lghpzx7o', name: 'Dnipro', country: 'UA', ...data}]
     cards: [],
-    favorites: []
+    favorites: [],
+    dataSrc: 'cards', // 'cards', 'favorites'
   }),
 
   getters: {
@@ -18,13 +18,13 @@ export default createStore({
     },
 
     getByUID(state) {
-      return (uid) => state.cards.find(el => el.uid === uid)
+      return (uid) => state[state.dataSrc].find(el => el.uid === uid)
     },
 
     getChartData(state) {
       return (uid) => {
-        const card = state.cards.find(el => el.uid === uid)
-        return card.hourly?.map((el, index) => {
+        const card = state[state.dataSrc].find(el => el.uid === uid)
+        return card?.hourly?.map((el, index) => {
           return {
             time: (index & 1) === 0 ? (index >> 1) + ':00' : (index >> 1) + ':30',
             temp: Math.round(el.temp)
@@ -36,10 +36,18 @@ export default createStore({
     isInFavorites(state) {
       return (locationId) =>
         state.favorites.some(el => el.locationId === locationId)
+    },
+
+    favCount(state) {
+      return state.favorites.length
     }
   },
 
   mutations: {
+    SET_DATA_SRC(state, val = 'cards') {
+      state.dataSrc = val
+    },
+
     ADD_CARD(state) {
       console.log('ADD_CARD')
       const uid = Date.now().toString(36);
