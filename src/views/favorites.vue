@@ -5,7 +5,6 @@
       v-for="card in favorites"
       :key="card.uid"
       :uid="card.uid"
-      @delete="deleteCard"
     />
   </main>
 </template>

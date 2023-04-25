@@ -34,7 +34,7 @@
         <a
           class="btn btn-icon"
           href="#"
-          @click.prevent="deleteCard"
+          @click.prevent="$emit('delete', uid)"
         >
           <IconDelete />
         </a>

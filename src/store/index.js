@@ -54,9 +54,9 @@ export default createStore({
       state.cards.push({uid})
     },
 
-    DELETE_CARD(state, locationId) {
-      console.log('DELETE_CARD', locationId)
-      state.cards = state.cards.filter(el => el.uid != locationId)
+    DELETE_CARD(state, uid) {
+      console.log('DELETE_CARD', uid)
+      state.cards = state.cards.filter(el => el.uid != uid)
     },
 
     UPDATE_CARD(state, data) {
@@ -74,9 +74,9 @@ export default createStore({
       state.favorites.push({uid, ...data})
     },
 
-    REMOVE_FROM_FAVORITES(state, locationId) {
+    REMOVE_FROM_FAVORITES(state, data) {
       console.log('REMOVE_FROM_FAVORITES')
-      state.favorites = state.favorites.filter(el => el.locationId !== locationId)
+      state.favorites = state.favorites.filter(el => el.locationId !== data.locationId)
     }
   },
 
@@ -85,8 +85,8 @@ export default createStore({
       commit('ADD_CARD')
     },
 
-    deleteCard({commit}, locationId) {
-      commit('DELETE_CARD', locationId)
+    deleteCard({commit}, uid) {
+      commit('DELETE_CARD', uid)
     },
 
     async getCardData({commit}, data) {
@@ -125,11 +125,11 @@ export default createStore({
       }
     },
 
-    removeFromFavorites({ commit, state, getters }, locationId) {
-      console.log('removeFromFavorites --', locationId)
+    removeFromFavorites({ commit, state, getters }, data) {
+      console.log('removeFromFavorites --', data)
 
-      if (getters.isInFavorites(locationId)) {
-        commit('REMOVE_FROM_FAVORITES', locationId)
+      if (getters.isInFavorites(data.locationId)) {
+        commit('REMOVE_FROM_FAVORITES', data)
 
         const favorites = state.favorites.map(el => ({
           address: el.address,

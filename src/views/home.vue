@@ -48,7 +48,7 @@
     }
   }
 
-  async function deleteCard(locationId) {
+  async function deleteCard(uid) {
     const res = await swal.fire({
       text: 'Are you shure you want to delete the card?',
       icon: 'warning',
@@ -56,7 +56,7 @@
       showCancelButton: true,
       confirmButtonText: 'delete'
     })
-    res.isConfirmed && store.dispatch('deleteCard', locationId)
+    res.isConfirmed && store.dispatch('deleteCard', uid)
   }
   
   function onKeydown(e) {
