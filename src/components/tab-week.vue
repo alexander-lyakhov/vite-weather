@@ -50,9 +50,12 @@
       align-items: center;
       padding: .5rem;
 
+      .date {
+        color: $text-200;
+      }
       .value {
         font-size: 1.25rem;
-        color: $text-300;
+        color: $text-200;
       }
 
       /*

@@ -22,9 +22,9 @@
     store.commit('SET_DATA_SRC', 'favorites')
   )
 
-  function deleteCard(uid) {
-    console.log('deleteFromFavorites', uid)
-    store.dispatch('deleteFromFavorites', uid)
+  function deleteCard(locationId) {
+    console.log('delete Card -> removeFromFavorites', locationId)
+    store.dispatch('removeFromFavorites', locationId)
   }
 </script>
 

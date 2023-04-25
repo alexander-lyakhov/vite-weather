@@ -20,6 +20,7 @@
   import { ref, computed, onMounted, onUnmounted, onActivated } from 'vue'
   import { useStore } from 'vuex'
   import { debounce } from 'lodash'
+  import swal from 'sweetalert2'
   import card from '@/components/card'
 
   const store = useStore()
@@ -33,12 +34,12 @@
   )
 
   onMounted(() => {
-    document.documentElement.addEventListener('keydown', debouncedOnkeydown)
+    // document.documentElement.addEventListener('keydown', debouncedOnkeydown)
     addCard()
   })
   
   onUnmounted(() => {
-    document.documentElement.removeEventListener('keydown', debouncedOnkeydown)
+    // document.documentElement.removeEventListener('keydown', debouncedOnkeydown)
   })
 
   function addCard() {
@@ -47,10 +48,17 @@
     }
   }
 
-  function deleteCard(uid) {
-    store.dispatch('deleteCard', uid)
+  async function deleteCard(locationId) {
+    const res = await swal.fire({
+      text: 'Are you shure you want to delete the card?',
+      icon: 'warning',
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'delete'
+    })
+    res.isConfirmed && store.dispatch('deleteCard', locationId)
   }
-
+  
   function onKeydown(e) {
     e.altKey && e.key === '+' && addCard()
   }

@@ -94,7 +94,7 @@
         height: 24px;
         line-height: 24px;
         position: relative;
-        margin-top: .5rem;
+        margin-top: .75rem;
       }
     }
     .dayly {

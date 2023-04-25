@@ -34,7 +34,7 @@
         <a
           class="btn btn-icon"
           href="#"
-          @click.prevent="$emit('delete', uid)"
+          @click.prevent="deleteCard"
         >
           <IconDelete />
         </a>
@@ -72,6 +72,8 @@
       default: false
     }
   })
+
+  const emit = defineEmits(['delete'])
 
   provide('uid', props.uid)
 
@@ -127,6 +129,10 @@
     if (e.altKey && [1,2,3].includes(+e.key)) {
       selectedTab.value = cardTabs[+e.key - 1]
     }
+  }
+
+  function deleteCard() {
+    emit('delete', data.value.locationId)
   }
 </script>
 
