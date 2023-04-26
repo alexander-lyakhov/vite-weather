@@ -34,12 +34,13 @@
   )
 
   onMounted(() => {
-    // document.documentElement.addEventListener('keydown', debouncedOnkeydown)
-    addCard()
+    document.documentElement.addEventListener('keydown', debouncedOnkeydown)
+    console.log('onMounted', cards.value.length)
+    !cards.value.length && addCard()
   })
   
   onUnmounted(() => {
-    // document.documentElement.removeEventListener('keydown', debouncedOnkeydown)
+    document.documentElement.removeEventListener('keydown', debouncedOnkeydown)
   })
 
   function addCard() {
@@ -56,7 +57,16 @@
       showCancelButton: true,
       confirmButtonText: 'delete'
     })
-    res.isConfirmed && store.dispatch('deleteCard', uid)
+    // res.isConfirmed && store.dispatch('deleteCard', uid)
+
+    swal.fire({
+      icon: 'success',
+      text: 'Success',
+      toast: true,
+      position: 'top-end',
+      timer: 2000,
+      showConfirmButton: false
+    })
   }
   
   function onKeydown(e) {

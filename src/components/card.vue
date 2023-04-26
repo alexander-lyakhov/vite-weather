@@ -33,6 +33,7 @@
         </a>
         <a
           class="btn btn-icon"
+          :class="{'is-disabled': isDeleteBtnDisabled}"
           href="#"
           @click.prevent="$emit('delete', uid)"
         >
@@ -50,6 +51,7 @@
 <script setup>
   import { ref, computed, provide, nextTick } from 'vue'
   import { useStore } from 'vuex'
+  import { useRoute } from 'vue-router'
   import { useCardData } from '@/use/useCardData'
   import IconFavs from '@/assets/icons/star.svg'
   import IconReload from '@/assets/icons/reload.svg'
@@ -84,6 +86,7 @@
   }
 
   const store = useStore()
+  const route = useRoute()
   const { data, isCardDefined } = useCardData(props.uid)
 
   const isLocked = ref(false)
@@ -95,6 +98,8 @@
   const isInFavorites = computed(() =>
     store.getters.isInFavorites(data.value?.locationId)
   )
+
+  const isDeleteBtnDisabled = computed(() => route.name === 'favorites')
   
   const selectedTabView = computed(() =>
     components[selectedTab.value.value]
